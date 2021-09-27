@@ -1,13 +1,13 @@
-import { expect as expectCDK, matchTemplate, MatchStyle } from "@aws-cdk/assert";
-import * as cdk from "@aws-cdk/core";
-import * as Only1Token from "../bots/only-1-token-stack";
+import { expect as expectCDK, matchTemplate, MatchStyle } from '@aws-cdk/assert';
+import * as cdk from '@aws-cdk/core';
+import * as Only1Token from '../bots/o1t-bot/o1t-bot-stack';
 
-test("Empty Stack", () => {
+test('Empty Stack', () => {
     const app = new cdk.App();
     // WHEN
-    const stack = new Only1Token.Only1TokenStack(app, "MyTestStack");
+    const o1tStack = new Only1Token.Only1TokenBotStack(app, 'O1TTestStack');
     // THEN
-    expectCDK(stack).to(
+    expectCDK(o1tStack).to(
         matchTemplate(
             {
                 Resources: {},

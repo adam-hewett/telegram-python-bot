@@ -20,7 +20,7 @@ export class FatcakeBotStack extends cdk.Stack {
             compatibleRuntimes: [lambda.Runtime.PYTHON_3_8],
         });
 
-        const lbd = new lambda.Function(this, botName, {
+        const lbd = new lambda.Function(this, `${botName}-lambda`, {
             runtime: lambda.Runtime.PYTHON_3_8,
             handler: `${botName}.lambda_handler`,
             code: lambda.Code.fromAsset(`${path}/${botName}`),
@@ -35,7 +35,7 @@ export class FatcakeBotStack extends cdk.Stack {
 
         secret.grantRead(lbd);
 
-        const restAPI = new apigateway.RestApi(this, botName, {
+        const restAPI = new apigateway.RestApi(this, `${botName}-api`, {
             restApiName: botName,
             deploy: true,
             deployOptions: {

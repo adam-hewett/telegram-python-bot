@@ -391,23 +391,6 @@ def shillpost():
         return ERROR_MESSAGES['default']
 
 
-# def welcome(username):
-#     try:
-#         markup = types.InlineKeyboardMarkup()
-#         btn_web = types.InlineKeyboardButton('\U0001F30DWebsite', callback_data='website',url=LINKS['website'])
-#         btn_lite = types.InlineKeyboardButton('\U0001F4DDLightpaper', callback_data='lightpaper', url=LINKS['lightpaper'])
-#         btn_poocoin = types.InlineKeyboardButton('\U0001F4A9Chart', callback_data='poocoin', url=LINKS['poocoin'])
-#         btn_pcs = types.InlineKeyboardButton('\U0001F95EPancakeSwap', callback_data='pcs',url=LINKS['pcs'])
-#         btn_rewards = types.InlineKeyboardButton('\U0001F4B8O1T Rewards',callback_data='rewards',url=LINKS['rewards'])
-#         btn_bsc = types.InlineKeyboardButton('\U0001F5A8BscScan',callback_data='bsc',url=LINKS['bsc'])
-#         markup.add(btn_web, btn_lite, btn_poocoin, btn_pcs, btn_rewards,btn_bsc)
-
-#         resp_msg = f'''Hello, {username}, Welcome to Only 1 Token! \U0000261D\nThe world's most valuable crypto asset \U0001F4B0\nPlease check \U0001F4CC pinned messsages for our latest news \U00002757\n\nContract\U0001F4C4:{CONTRACT_ADDRESS}\n\nIf you need more info click \U0001F449 /all_commands'''
-#         return resp_msg, markup
-#     except Exception as error:
-#         logger.error(f'Error occurred processing \'welcome\' command: {error}')
-#         return ERROR_MESSAGES['default'], None
-
 def get_command_from_body(body):
 
     message = body.get('message')
@@ -440,7 +423,6 @@ def lambda_handler(event, context):
         body = json.loads(event['body'])
         logger.info(f'[ INIT - BODY ] {json.dumps(body)}')
 
-        # TODO - Make parsing of message more robust
         command = get_command_from_body(body)
         if not command:
             logger.info(f'[ INIT - COMMAND ] No command')
@@ -449,7 +431,6 @@ def lambda_handler(event, context):
             }
 
         chat_id = body['message']['chat']['id']
-        # username = body['message']['from']['username'] or 'Member'
 
         logger.info('[ INIT ] Validating environment variables')
         for var in ENV_VARS:
@@ -463,13 +444,7 @@ def lambda_handler(event, context):
         )
         api_key = secrets['telegramApiKey']
 
-        # bot_name = ENV_VARS['BOT_NAME']
         bot = telebot.TeleBot(api_key, parse_mode='MARKDOWN')
-
-        # if command not in SUPPORTED_COMMANDS:
-        #     logger.info('[ COMMAND ] Unsupported message')
-        #     resp_msg = "Sorry, I don't understand that command, please do /allcommands."
-        #     bot.send_message(chat_id, resp_msg)
             
         if command == 'holders':
             logger.info('[ COMMAND ] Processing /holders request')
@@ -551,10 +526,6 @@ def lambda_handler(event, context):
             logger.info('[ COMMAND ] Processing /shillpost request')
             resp_msg = shillpost()
             bot.send_message(chat_id, resp_msg)
-        # else:
-        #     logger.info('[ COMMAND ] Unsupported message')
-        #     resp_msg = "Sorry, I don't understand that command, please do /allcommands."
-        #     bot.send_message(chat_id, resp_msg)
         
     except Exception as error:
         logger.error(f'[ FAIL ] Unhandled event: {error}')
