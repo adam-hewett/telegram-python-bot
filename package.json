@@ -1,0 +1,40 @@
+{
+  "name": "only-1-token",
+  "version": "0.1.0",
+  "bin": {
+    "only-1-token": "bin/only-1-token.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "postinstall": "node ./shared/lambda-layers/build-lambda-layers.js",
+    "update": "node ./shared/lambda-layers/update-lambda-layers.js",
+    "lint": "gts lint",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run lint"
+  },
+  "devDependencies": {
+    "@aws-cdk/assert": "1.108.0",
+    "@types/jest": "^26.0.10",
+    "@types/node": "10.17.27",
+    "aws-cdk": "^1.108.0",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.2.0",
+    "ts-node": "^9.0.0",
+    "typescript": "~3.9.7"
+  },
+  "dependencies": {
+    "@aws-cdk/aws-apigateway": "^1.108.0",
+    "@aws-cdk/aws-lambda": "^1.108.0",
+    "@aws-cdk/aws-logs": "^1.108.0",
+    "@aws-cdk/aws-secretsmanager": "^1.108.0",
+    "@aws-cdk/core": "1.108.0",
+    "source-map-support": "^0.5.16"
+  }
+}

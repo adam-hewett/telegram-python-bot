@@ -1,0 +1,19 @@
+holders - Show the current number of holders
+website - Visit our website
+prices - Get the current price
+earningstracker - Track your earned rewards
+portfoliotracker - Track you BSC portfolio
+buy - Buy on PancakeSwap
+tax - Breakdown of our tax
+slippage - Set slippage on PancakeSwap
+chart - Check our charts
+contract - Contract address
+bscscan - BscScan Page
+liquidity - Check locked liquidity
+mediumarticles - Current list of medium articles
+todolist - Members to do list
+faq - Frequently Asked Questions
+allcommands - List all commands
+tokenomics - Spiderman meme
+mememaker - Create an O1T Meme
+shillpost - Shill post for sharing
