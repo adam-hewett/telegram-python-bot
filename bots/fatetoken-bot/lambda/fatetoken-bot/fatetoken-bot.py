@@ -1,4 +1,4 @@
-#building for FatCake
+#building for FateToken
 
 import os
 import sys
@@ -8,7 +8,6 @@ import simplejson as json
 import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
-import random
 
 import locale
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
@@ -32,8 +31,8 @@ ERROR_MESSAGES = {
 }
 
 LINKS = {
-    'website': 'https://www.fatcaketoken.com',
-    'website_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
+    'website': 'https://www.fatcaketoken.com/ecosystem', #done
+    'website_photo': 'https://i.ibb.co/rtXnV7H/website.png', #done
     'rewards': 'https://fatcakerewards.netlify.app',
     'rewards_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
     'pcs': 'https://pancakeswap.finance/swap?outputCurrency=0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
@@ -49,10 +48,8 @@ LINKS = {
     'whitepaper': 'https://fatcake.club/pinkpaper/pinkpaper.pdf',
     'whitepaper_photo': 'https://i.ibb.co/YyJtJmN/Pink-Paper-banner.png',
     'merch': 'https://fat-cake-token.myshopify.com/',
-    'merch_photo': 'https://i.ibb.co/z5mLmpM/Merch.png',
+    'merch_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
     'nft': 'https://treasureland.market/homepage?address=0xa7c3aabf911b8ff6cdf61eb9eb5147fe5d8bfddd',
-    'nft_2': 'https://opensea.io/collection/frosting-social-avatar-collection',
-    'rowdy_nft': 'https://opensea.io/collection/rowdyrabbits',
     'nft_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
     'poocoin': 'https://poocoin.app/tokens/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
     'bogged': 'https://charts.bogged.finance/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
@@ -65,73 +62,53 @@ LINKS = {
     'promotion': 't.me/fatpromo'
 }
 
-FATCAKE_IMAGES = [
-    'https://i.ibb.co/zhVj5v8/FCB1.jpg',
-    'https://i.ibb.co/BVPNzYt/FCB2.jpg',
-    'https://i.ibb.co/wzwxDsb/FCB3.jpg',
-    'https://i.ibb.co/PtPLk3j/FCB4.jpg',
-    'https://i.ibb.co/cbNMTLq/FCB01.jpg',
-    'https://i.ibb.co/DwVWznd/FCB03.jpg',
-    'https://i.ibb.co/xJHm5my/FCB02.jpg',
-    'https://i.ibb.co/N6ZgyDJ/FCB05.png',
-    'https://i.ibb.co/tc6BQt4/FCB06.png',
-    'https://i.ibb.co/Fbn32YV/FCB07.png',
-    'https://i.ibb.co/tpTtQNh/FCB08.png'
-]
 
-FROSTING_IMAGES = [
-    'https://i.ibb.co/hXBvrqt/Frosting-2.png',
-    'https://i.ibb.co/d6dCJbZ/Frosting-1.png',
-    'https://i.ibb.co/mJD77wG/PSfilled.png',
-    'https://i.ibb.co/z8s8hQJ/FCB04.png'
-]
-
-
-#allcommands - Show All Commands
-#website - Visit Website
-#rewards - Track your Rewards
+#allcommands - Show all Commands
+#website - Visit our Website
+#rewards - Track your Earned Rewards
 #buy - Buy on PancakeSwap(V2)
-#tax - Tax Explained
-#slippage - Set Slippage on PancakeSwap(V2)
-#chart - Price Charts
+#tax - Breakdown of our Tax
+#slippage - Set Slippage on PancakeSwap
+#chart - Check our Charts
 #contract - Contract Address
 #bscscan - BscScan Page
-#holders - FatCake Holders
-#liquidity - Locked Liquidity
-#tokenomics - Tokenomics Explained
-#nft - NFT Collections
+#holders - Holders of this Token
+#liquidity - Check Locked Liquidity
+#tokenomics - Overview of our tokenomics
+#nft - Fat Punk NFTs
 #pinkpaper - The FatCake Pink Paper
 #merch - Buy Fatcake / Frosting Merch
-#frosting - Frosting Social
 #channels - Fatcake International Telegram Groups
 #hashtags - Recommended Hashtags
-#marketing - Direct Marketing Proposals
+#marketing - Direct all Marketing Proposals
 #price_info - Get Price Info
 
 
 SUPPORTED_COMMANDS = [
     'allcommands',
     'website',
-    'rewards',
-    'buy',
-    'tax',
-    'slippage',
-    'chart',
-    'contract',
-    'bscscan',
-    'holders',
-    'liquidity',
-    'tokenomics',
-    'nft',
-    'pinkpaper',
-    'whitepaper',
-    'merch',
-    'store',
-    'channels',
-    'hashtags',
-    'price_info',
-    'marketing',
-    'frosting'
+    'presale',
+    'whitelist',
+    'shillcontest',
+    'hashtags'
+#    'rewards',
+#    'buy',
+#    'tax',
+#    'slippage',
+#    'chart',
+#    'contract',
+#    'bscscan',
+#    'holders',
+#    'liquidity',
+#    'tokenomics',
+#    'nft',
+#    'pinkpaper',
+#    'whitepaper',
+#    'merch',
+#    'store',
+#    'channels',
+#    'price_info',
+#    'marketing'
 ]
 
 EXCLUDED_COMMANDS = [
@@ -142,7 +119,7 @@ EXCLUDED_COMMANDS = [
 
 def allcommands():
     try:
-        resp_msg = f'''\U00002139 Here are all commands!\n\n/allcommands - Show All Commands\n/website - Visit Website\n/rewards - Track your Rewards\n/buy - Buy on PancakeSwap(V2)\n/tax - Tax Explained\n/slippage - Set Slippage on PancakeSwap(V2)\n/chart - Price Charts\n/contract - Contract Address\n/bscscan - BscScan Page\n/holders - FatCake Holders\n/liquidity - Locked Liquidity\n/tokenomics - Tokenomics Explained\n/nft - NFT Collections\n/pinkpaper - The FatCake Pink Paper\n/merch - Buy Fatcake / Frosting Merch\n/frosting - Frosting Social\n/channels - Fatcake International Telegram Groups\n/hashtags - Recommended Hashtags\n/marketing - Direct Marketing Proposals\n/price\_info - Get Price Info'''
+        resp_msg = f'''\U00002139 Here are all commands!\n\n/website - Visit our Website\n/presale - Presale Info\n/whitelist - Whitelist Info\n/shillcontest - Shill Contest Info\n/hashtags - Recommended Hashtags'''#/rewards - Track your Earned Rewards\n/buy - Buy on PancakeSwap(V2)\n/tax - Breakdown of our Tax\n/slippage - Set Slippage on PancakeSwap\n/chart - Check our Charts\n/contract - Contract Address\n/bscscan - BscScan Page\n/holders - Holders of this Token\n/liquidity - Check Locked Liquidity\n/tokenomics - Overview of our tokenomics\n/nft - Fat Punk NFTs\n/pinkpaper - The FatCake Pink Paper\n/merch - Buy Fatcake / Frosting Merch\n/channels - Fatcake International Telegram Groups\n/hashtags - Recommended Hashtags\n/marketing - Direct all Marketing Proposals'''
         return resp_msg
     except Exception as error:
         logger.error(
@@ -162,6 +139,32 @@ def website(): #done FC
     except Exception as error:
         logger.error(f'Error occurred processing \'website\' command: {error}')
         return ERROR_MESSAGES['default'], None
+
+def presale(): #done FC
+    try:
+        resp_msg = f'''We are building a social media app that integrates cryptocurrency so that users can make passive income with their data, rather than facebook selling your data for billions. Now you get rewarded passively from the app revenue.... crypto influencers, streamers, podcast hosts, etc can make a profile, sell NFTs, set subscription prices to view exclusive content, AND make passive income from just using it.\n\nSo the trading rewards are great, but this is the first crypto-business to reward users with its revenue.\n\nBy owning the token you are part shareholder of the company.\n\nToken 1 of our ecosystem did 17x on launch, expect more this time.\n\nPre Sale is TBA, Shooting for the week of the 18th, but we may opt for getting an official audit by a big name before launch.\n\nPre-Sale will be whitelist ONLY - 400 bnb Hard Cap - 1.5 bnb max contribution.\n\nThe longer we hype the better anyway ;)'''
+        return resp_msg
+    except Exception as error:
+        logger.error(f'Error occurred processing \'tax\' command: {error}')
+        return ERROR_MESSAGES['default']
+
+
+def whitelist(): #done FC
+    try:
+        resp_msg = f'''Pre-Sale will be whitelist ONLY - 400 BNB Hard Cap.\n\n1.5 BNB max contribution.'''
+        return resp_msg
+    except Exception as error:
+        logger.error(f'Error occurred processing \'tax\' command: {error}')
+        return ERROR_MESSAGES['default']
+
+
+def shillcontest(): #done FC
+    try:
+        resp_msg = f'''TBA'''
+        return resp_msg
+    except Exception as error:
+        logger.error(f'Error occurred processing \'tax\' command: {error}')
+        return ERROR_MESSAGES['default']
 
 
 def rewards(): #done FC
@@ -213,11 +216,9 @@ def chart(): #done FC
     try:
         markup = types.InlineKeyboardMarkup()
         btn_bogged = types.InlineKeyboardButton('\U0001F4CABogged', callback_data='bogged', url=LINKS['bogged'])
-        btn_guru = types.InlineKeyboardButton('\U0001F308DexGuru', callback_data='guru', url=LINKS['guru'])
+        btn_dex = types.InlineKeyboardButton('\U0001F308DexGuru', callback_data='guru', url=LINKS['guru'])
         btn_poocoin = types.InlineKeyboardButton('\U0001F4A9Poocoin', callback_data='poocoin', url=LINKS['poocoin'])
-        btn_dex = types.InlineKeyboardButton('\U0001F4A0DexTools', callback_data='dex', url=LINKS['dex'])
-        markup.add(btn_bogged, btn_guru)
-        markup.add(btn_poocoin, btn_dex)
+        markup.add(btn_bogged, btn_dex, btn_poocoin)
         
         resp_msg = f'''\U00002139 Click any button below and use your favorite chart!'''
         
@@ -278,13 +279,9 @@ def tokenomics(): #done FC
 def nft(): #done FC
     try:
         markup = types.InlineKeyboardMarkup()
-        btn_a = types.InlineKeyboardButton('\U0001F47E FatPunk Collection', callback_data='nft', url=LINKS['nft'])
-        btn_b = types.InlineKeyboardButton('\U0001F9C1 Frosting Avatar Collection', callback_data='nft_2', url=LINKS['nft_2'])
-        btn_c = types.InlineKeyboardButton('\U0001F430 Rowdy Rabbits Collection', callback_data='rowdy_nft', url=LINKS['rowdy_nft'])
+        btn_a = types.InlineKeyboardButton('\U0001F9C1 Fat Punk NFTs', callback_data='nft', url=LINKS['nft'])
         markup.add(btn_a)
-        markup.add(btn_b)
-        markup.add(btn_c)
-        resp_msg = '\U00002139 Check out our NFT Collections!'
+        resp_msg = '\U00002139 Check out our Fat Punk NFTs!'
         return resp_msg, markup
     except Exception as error:
         logger.error(f'Error occurred processing \'nft\' command: {error}')
@@ -338,7 +335,7 @@ def channels(): #done FC
 
 def marketing(): #done FC
     try:
-        resp_msg = f'''\U00002139 Please direct all marketing proposals and promotions to \U0001F449 https://t.me/fatpromo.'''
+        resp_msg = f'''Please direct all marketing proposals and promotions to https://t.me/fatpromo.'''
         return resp_msg
     except Exception as error:
         logger.error(f'Error occurred processing \'marketing\' command: {error}')
@@ -347,20 +344,11 @@ def marketing(): #done FC
 
 def hashtags(): #done FC
     try:
-        resp_msg = f'''Primary Hashtags:\n#FATCAKE #FrostingSocial #FATPUNK @FATCAKEtoken\n\nSecondary Hashtags:\n#BinanceSmartChain #BSCGems #BSCGem #BSC #Cryptocurrency #cryptomoonshots #CMS #CAKE #PancakeSwap #rewardcakecoin @PancakeSwap @binance @cz\_binance @elonmusk'''
+        resp_msg = f'''Primary Hashtags:\n#FATE #FATEtoken #FrostingSocial #FateCake\n\nSecondary Hashtags:\n#BSCGems #Binance #BinanceSmartChain #Cryptocurency #cryptomoonshots #PancakeSwap #btc #ElonMusk #bsc #crypto #investment #money #fx #eth #wealth #blockchain #financialfreedom #shib #doge #floki'''
         return resp_msg
     except Exception as error:
         logger.error(
             f'Error occurred processing \'hashtags\' command: {error}')
-        return ERROR_MESSAGES['default']
-
-
-def frosting(): #done FC
-    try:
-        resp_msg = f'''FatCake Token is launching the world’s first decentralized social media platform.\n\nAnyone can make a channel and charge their users subscription fees, sell NFT’s, live stream and accept anonymous donations!\n\nThis will be a hit for influencers and musicians! Especially since all the revenue gets rewarded to token holders!\n\nRevenue generated by the three apps, ad revenue and two games will be put into the liquidity pool or distributed to the holders in cake rewards, which will boost the price and rewards generating volume adding to the normal volume already generated from the buying and selling of tokens.'''
-        return resp_msg
-    except Exception as error:
-        logger.error(f'Error occurred processing \'frosting\' command: {error}')
         return ERROR_MESSAGES['default']
 
 
@@ -446,8 +434,8 @@ def price_info():
 #        fat_liq_value = float(liq_tokens['FATCAKE']) * float(fat_price_data['fatcake']['usd'])
 #        fat_liq_dlr_value = locale.currency( fat_liq_value, grouping=True )
 #        liq_total = locale.currency( (float(bnb_liq_value)) + (float(fat_liq_value)), grouping=True )
-
-        resp_msg = f'''Current price information\n\nName: *FatCake Token*\nSymbol: *FATCAKE*\n\nPrice: *{fat_price} ({fat_change}%) 24H*\n24H Volume: *{fat_vol}*\nMarketcap: *{marketcap}*\nFatCake Holders: *{holders.strip()}*\n\nBNB Price: *{bnb_price} ({bnb_change}%) 24H*\n\n1 BNB = *{fat_bnb_dlr_value} FATCAKE*\n\n'''#\n\nFatCake Liquidity Total: *{liq_total}*\nLiquidity FatCake Qty: *{liq_tokens['FATCAKE']}*\nLiquidity FatCake Value: *{fat_liq_dlr_value}*\nLiquidity BNB Qty: *{liq_tokens['WBNB']}*\nLiquidity BNB Value: *{bnb_liq_dlr_value}*\n\nBNB Price: *{bnb_price} ({bnb_change}%) 24H*'''
+        
+        resp_msg = f'''Current price information\n\nName: *FatCake Token*\nSymbol: *FATCAKE*\n\n\U0001F9C1 FatCake Price: *{fat_price} ({fat_change}%) 24H*\n\U00002696 24H Volume: *{fat_vol}*\n\U0001F4B5 Marketcap: *{marketcap}*\n\U0001F504 Total Supply: 100B\n\U0001F9C1 FatCake Holders: *{holders.strip()}*\n\n\U0001F4A0 BNB Price: *{bnb_price} ({bnb_change}%) 24H*\n\U0001F4A0 1 BNB = *\U0001F9C1 {fat_bnb_dlr_value} FATCAKE*\n\n'''#\n\nFatCake Liquidity Total: *{liq_total}*\nLiquidity FatCake Qty: *{liq_tokens['FATCAKE']}*\nLiquidity FatCake Value: *{fat_liq_dlr_value}*\nLiquidity BNB Qty: *{liq_tokens['WBNB']}*\nLiquidity BNB Value: *{bnb_liq_dlr_value}*\n\nBNB Price: *{bnb_price} ({bnb_change}%) 24H*'''
         return resp_msg
     except Exception as error:
         logger.error(f'Error occurred processing \'prices\' command: {error}')
@@ -504,8 +492,8 @@ def lambda_handler(event, context):
                 raise NameError('Unable to retrieve one or more environment variables')
                 
         api_key =  os.environ['telegramApiKey']        
-        bot = telebot.TeleBot(api_key, parse_mode='MARKDOWN')        
-
+        bot = telebot.TeleBot(api_key, parse_mode='MARKDOWN')
+        
         if command not in SUPPORTED_COMMANDS:
             logger.info('[ COMMAND ] Unsupported message')
             resp_msg = "Sorry, I don't understand that command, please do /allcommands."
@@ -514,12 +502,27 @@ def lambda_handler(event, context):
         if command == 'holders':
             logger.info('[ COMMAND ] Processing /holders request')
             resp_msg = fetch_holders_command()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg)
+            bot.send_photo(chat_id, LINKS['holders_photo'], resp_msg)
             
         elif command == 'website':
             logger.info('[ COMMAND ] Processing /website request')
             resp_msg, markup = website()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
+            bot.send_photo(chat_id, LINKS['website_photo'], resp_msg, reply_markup=markup)
+
+        elif command == 'presale':
+            logger.info('[ COMMAND ] Processing /presale request')
+            resp_msg = presale()
+            bot.send_photo(chat_id, LINKS['website_photo'], resp_msg)
+
+        elif command == 'whitelist':
+            logger.info('[ COMMAND ] Processing /whitelist request')
+            resp_msg = whitelist()
+            bot.send_photo(chat_id, LINKS['website_photo'], resp_msg)
+            
+        elif command == 'shillcontest':
+            logger.info('[ COMMAND ] Processing /shillcontest request')
+            resp_msg = shillcontest()
+            bot.send_photo(chat_id, LINKS['website_photo'], resp_msg)
             
         elif command == 'price_info':
             logger.info('[ COMMAND ] Processing /price_info request')
@@ -529,57 +532,57 @@ def lambda_handler(event, context):
         elif command == 'rewards':
             logger.info('[ COMMAND ] Processing /rewards request')
             resp_msg, markup = rewards()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
+            bot.send_photo(chat_id, LINKS['rewards_photo'], resp_msg, reply_markup=markup)
             
         elif command == 'buy':
             logger.info('[ COMMAND ] Processing /buy request')
             resp_msg, markup = buy()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
+            bot.send_photo(chat_id, LINKS['pcs_photo'], resp_msg, reply_markup=markup)
             
         elif command == 'nft':
             logger.info('[ COMMAND ] Processing /nft request')
             resp_msg, markup = nft()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
+            bot.send_photo(chat_id, LINKS['nft_photo'], resp_msg, reply_markup=markup)
             
         elif command == 'tax':
             logger.info('[ COMMAND ] Processing /tax request')
             resp_msg = tax()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg)
+            bot.send_photo(chat_id, LINKS['tax_photo'], resp_msg)
             
         elif command == 'marketing':
             logger.info('[ COMMAND ] Processing /marketing request')
             resp_msg = marketing()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg)
+            bot.send_message(chat_id, resp_msg)
             
         elif command == 'hashtags':
             logger.info('[ COMMAND ] Processing /hashtags request')
             resp_msg = hashtags()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg)
+            bot.send_message(chat_id, resp_msg)
             
         elif command == 'slippage':
             logger.info('[ COMMAND ] Processing /slippage request')
             resp_msg = slippage()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg)
+            bot.send_message(chat_id, resp_msg)
             
         elif command == 'chart' or command == f'charts':
             logger.info('[ COMMAND ] Processing /chart request')
             resp_msg, markup = chart()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
+            bot.send_message(chat_id, resp_msg, reply_markup=markup)
             
         elif command == 'contract':
             logger.info('[ COMMAND ] Processing /contract request')
             resp_msg = contract()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg)
+            bot.send_message(chat_id, resp_msg)
             
         elif command == 'bscscan':
             logger.info('[ COMMAND ] Processing /bscscan request')
             resp_msg, markup = bscscan()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
+            bot.send_photo(chat_id, LINKS['bscscan_photo'], resp_msg, reply_markup=markup)
             
         elif command == 'liquidity':
             logger.info('[ COMMAND ] Processing /liquidity request')
             resp_msg, markup = liquidity()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
+            bot.send_message(chat_id, resp_msg, reply_markup=markup)
             
         elif command == 'allcommands':
             logger.info('[ COMMAND ] Processing /allcommands request')
@@ -599,17 +602,12 @@ def lambda_handler(event, context):
         elif command == 'channels':
             logger.info('[ COMMAND ] Processing /channels request')
             resp_msg, markup = channels()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
+            bot.send_message(chat_id, resp_msg, reply_markup=markup)
             
         elif command == 'pinkpaper' or command == f'whitepaper':
             logger.info('[ COMMAND ] Processing /pinkpaper request')
             resp_msg, markup = pinkpaper()
-            bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
-            
-        elif command == 'frosting':
-            logger.info('[ COMMAND ] Processing /frosting request')
-            resp_msg = frosting()
-            bot.send_photo(chat_id, random.choice(FROSTING_IMAGES), resp_msg)
+            bot.send_photo(chat_id, LINKS['whitepaper_photo'], resp_msg, reply_markup=markup)
             
     except Exception as error:
         logger.error(f'[ FAIL ] Unhandled event: {error}')

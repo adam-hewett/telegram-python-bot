@@ -3,11 +3,11 @@ import * as lambda from '@aws-cdk/aws-lambda';
 import * as apigateway from '@aws-cdk/aws-apigateway';
 import * as logs from '@aws-cdk/aws-logs';
 
-export class FatcakeBotStack extends cdk.Stack {
+export class HappyCoinBotStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        const botName = 'fatcake-bot';
+        const botName = 'happycoin-bot';
         const path = `bots/${botName}/lambda`;
         const layerPath = 'shared/lambda-layers';
 

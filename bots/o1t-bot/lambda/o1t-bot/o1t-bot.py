@@ -1,19 +1,16 @@
+#building for O1T
+
 import os
 import sys
 sys.path.insert(0, '/opt/python/pip_modules')
 
 import simplejson as json
-
-import traceback
 import logging
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 import locale
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
-
-import boto3
-SEC_CLIENT = boto3.client('secretsmanager')
 
 import telebot
 from telebot import types  # added by adam
@@ -22,8 +19,8 @@ import requests
 import cloudscraper
 
 # Environment Variables
-ENV_VARS = { 
-    'SECRET_ARN': '',
+ENV_VARS = {
+    'telegramApiKey': '',
     'BOT_NAME': ''
 }
 
@@ -438,12 +435,7 @@ def lambda_handler(event, context):
             if ENV_VARS[var] is None:
                 raise NameError('Unable to retrieve one or more environment variables')
 
-        logger.info('[ INIT ] Getting secrets from Secrets Manager')
-        secrets = json.loads(SEC_CLIENT.get_secret_value(
-            SecretId=ENV_VARS['SECRET_ARN'])['SecretString']
-        )
-        api_key = secrets['telegramApiKey']
-
+        api_key =  os.environ['telegramApiKey']
         bot = telebot.TeleBot(api_key, parse_mode='MARKDOWN')
             
         if command == 'holders':
