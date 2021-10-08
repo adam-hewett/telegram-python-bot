@@ -48,7 +48,7 @@ LINKS = {
     'liquidity': 'https://dxsale.app/app/v2_9/dxlockview?id=1805&add=0&type=lpdefi&chain=BSC',
     'whitepaper': 'https://fatcake.club/pinkpaper/pinkpaper.pdf',
     'whitepaper_photo': 'https://i.ibb.co/YyJtJmN/Pink-Paper-banner.png',
-    'merch': 'https://fat-cake-token.myshopify.com/',
+    'merch': 'https://www.fatecosystem.com/shop',
     'merch_photo': 'https://i.ibb.co/z5mLmpM/Merch.png',
     'nft': 'https://treasureland.market/homepage?address=0xa7c3aabf911b8ff6cdf61eb9eb5147fe5d8bfddd',
     'nft_2': 'https://opensea.io/collection/frosting-social-avatar-collection',
@@ -58,10 +58,10 @@ LINKS = {
     'bogged': 'https://charts.bogged.finance/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
     'dex': 'https://www.dextools.io/app/pancakeswap/pair-explorer/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
     'guru':'https://dex.guru/token/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16-bsc',
-    'china': 'https://t.me/FatCakeCH', 
-    'germany': 'https://t.me/FatCakeDE',
-    'india': 'https://t.me/FatCakeIN', 
-    'romania': 'https://t.me/FatCakeRomania',
+    'china': 'https://t.me/FATEcosystemCH', 
+    'germany': 'https://t.me/FATEcosystemDE',
+    'india': 'https://t.me/FATEcosystemIN', 
+    'romania': 'https://t.me/FATEcosystemRO',
     'promotion': 't.me/fatpromo'
 }
 
@@ -131,7 +131,15 @@ SUPPORTED_COMMANDS = [
     'hashtags',
     'price_info',
     'marketing',
-    'frosting'
+    'frosting',
+    'WE_ARE_BUILDING_THIS',
+    'REAL_BUSINESS',
+    'REAL_VALUE',
+    'REAL_UTILITY',
+    'FOR_THE_REAL_WORLD',
+    'BRICK_BY_BRICK',
+    'WE_DETERMINE_OUR_OWN_FATE',
+    'WE_WILL_NOT_BE_DETERRED'
 ]
 
 EXCLUDED_COMMANDS = [

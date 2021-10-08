@@ -1,4 +1,4 @@
-#building for FateToken
+#FATE Token MAIN bot
 
 import os
 import sys
@@ -31,8 +31,8 @@ ERROR_MESSAGES = {
 }
 
 LINKS = {
-    'website': 'https://www.fatcaketoken.com/ecosystem', #done
-    'website_photo': 'https://i.ibb.co/rtXnV7H/website.png', #done
+    'website': 'fatecosystem.com', #done
+    'website_photo': 'https://i.ibb.co/n7z6R9H/Website.png', #done
     'rewards': 'https://fatcakerewards.netlify.app',
     'rewards_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
     'pcs': 'https://pancakeswap.finance/swap?outputCurrency=0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
@@ -47,7 +47,7 @@ LINKS = {
     'liquidity': 'https://dxsale.app/app/v2_9/dxlockview?id=1805&add=0&type=lpdefi&chain=BSC',
     'whitepaper': 'https://fatcake.club/pinkpaper/pinkpaper.pdf',
     'whitepaper_photo': 'https://i.ibb.co/YyJtJmN/Pink-Paper-banner.png',
-    'merch': 'https://fat-cake-token.myshopify.com/',
+    'merch': 'https://www.fatecosystem.com/shop',
     'merch_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
     'nft': 'https://treasureland.market/homepage?address=0xa7c3aabf911b8ff6cdf61eb9eb5147fe5d8bfddd',
     'nft_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
@@ -59,7 +59,13 @@ LINKS = {
     'germany': 'https://t.me/FatCakeDE',
     'india': 'https://t.me/FatCakeIN', 
     'romania': 'https://t.me/FatCakeRomania',
-    'promotion': 't.me/fatpromo'
+    'promotion': 't.me/fatpromo',
+    'presale': 'https://sweepwidget.com/view/35291-2dmx3chb',
+    'presale_photo': 'https://i.ibb.co/vjBt5Wt/pre-sale.png',
+    'whitelist_photo': 'https://i.ibb.co/j54C9Tn/white-list.png',
+    'contests_photo': 'https://i.ibb.co/vdpx2Fj/contest.png',
+    'shillpost_photo': 'https://i.ibb.co/FYtBZX2/website.png'
+
 }
 
 
@@ -89,8 +95,9 @@ SUPPORTED_COMMANDS = [
     'website',
     'presale',
     'whitelist',
-    'shillcontest',
-    'hashtags'
+    'presalecontest',
+    'hashtags',
+    'shillpost'
 #    'rewards',
 #    'buy',
 #    'tax',
@@ -119,7 +126,7 @@ EXCLUDED_COMMANDS = [
 
 def allcommands():
     try:
-        resp_msg = f'''\U00002139 Here are all commands!\n\n/website - Visit our Website\n/presale - Presale Info\n/whitelist - Whitelist Info\n/shillcontest - Shill Contest Info\n/hashtags - Recommended Hashtags'''#/rewards - Track your Earned Rewards\n/buy - Buy on PancakeSwap(V2)\n/tax - Breakdown of our Tax\n/slippage - Set Slippage on PancakeSwap\n/chart - Check our Charts\n/contract - Contract Address\n/bscscan - BscScan Page\n/holders - Holders of this Token\n/liquidity - Check Locked Liquidity\n/tokenomics - Overview of our tokenomics\n/nft - Fat Punk NFTs\n/pinkpaper - The FatCake Pink Paper\n/merch - Buy Fatcake / Frosting Merch\n/channels - Fatcake International Telegram Groups\n/hashtags - Recommended Hashtags\n/marketing - Direct all Marketing Proposals'''
+        resp_msg = f'''\U00002139 Here are all commands!\n\n/website - Visit our Website\n/presale - Presale Info\n/whitelist - Whitelist Info\n/presalecontest - Pre-Sale Contest Info\n/hashtags - Recommended Hashtags\n/shillpost - Shill Post for Sharing'''#/rewards - Track your Earned Rewards\n/buy - Buy on PancakeSwap(V2)\n/tax - Breakdown of our Tax\n/slippage - Set Slippage on PancakeSwap\n/chart - Check our Charts\n/contract - Contract Address\n/bscscan - BscScan Page\n/holders - Holders of this Token\n/liquidity - Check Locked Liquidity\n/tokenomics - Overview of our tokenomics\n/nft - Fat Punk NFTs\n/pinkpaper - The FatCake Pink Paper\n/merch - Buy Fatcake / Frosting Merch\n/channels - Fatcake International Telegram Groups\n/hashtags - Recommended Hashtags\n/marketing - Direct all Marketing Proposals'''
         return resp_msg
     except Exception as error:
         logger.error(
@@ -142,28 +149,42 @@ def website(): #done FC
 
 def presale(): #done FC
     try:
-        resp_msg = f'''We are building a social media app that integrates cryptocurrency so that users can make passive income with their data, rather than facebook selling your data for billions. Now you get rewarded passively from the app revenue.... crypto influencers, streamers, podcast hosts, etc can make a profile, sell NFTs, set subscription prices to view exclusive content, AND make passive income from just using it.\n\nSo the trading rewards are great, but this is the first crypto-business to reward users with its revenue.\n\nBy owning the token you are part shareholder of the company.\n\nToken 1 of our ecosystem did 17x on launch, expect more this time.\n\nPre Sale is TBA, Shooting for the week of the 18th, but we may opt for getting an official audit by a big name before launch.\n\nPre-Sale will be whitelist ONLY - 400 bnb Hard Cap - 1.5 bnb max contribution.\n\nThe longer we hype the better anyway ;)'''
+        resp_msg = f'''We are building a social media app that integrates cryptocurrency so that users can make passive income with their data, rather than facebook selling your data for billions. Now you get rewarded passively from the app revenue.... crypto influencers, streamers, podcast hosts, etc can make a profile, sell NFTs, set subscription prices to view exclusive content, AND make passive income from just using it.\n\nSo the trading rewards are great, but this is the first crypto-business to reward users with its revenue.\n\nBy owning the token you are part shareholder of the company.\n\nPre-Sale is expected on Oct 25th, but we may opt for getting an official audit by a big name before launch.\n\nPre-Sale will be whitelist ONLY - 400 bnb Hard Cap - 1.5 bnb max contribution.\n\nThe longer we hype the better anyway ;)'''
         return resp_msg
     except Exception as error:
-        logger.error(f'Error occurred processing \'tax\' command: {error}')
+        logger.error(f'Error occurred processing \'presale\' command: {error}')
         return ERROR_MESSAGES['default']
 
 
 def whitelist(): #done FC
     try:
-        resp_msg = f'''Pre-Sale will be whitelist ONLY - 400 BNB Hard Cap.\n\n1.5 BNB max contribution.'''
+        resp_msg = f'''⭐️Whitelist Contest⭐️\n\n📝Whitelist Contest: sweepwidget.com/view/35291-2dmx3chb\n\nParticipate and get a chance to win a spot!\n🙋 100 Whitelist spots!⚠️\n NOTE: Top 25 Shillers get a spot!🔥\n\n📄Whitelist info & Presale:\nTotal Whitelist Spots: 300\n200 Spots reserved for contests.\n100 Spots reserved for Frosting Beta\n\n⚡️400 BNB Hardcap / 1.5 Max Buy⚡️\n\n⚠️ There won't be a public presale! \nAfter the whitelist presale will end, the token will be launched for everyone.'''
         return resp_msg
     except Exception as error:
-        logger.error(f'Error occurred processing \'tax\' command: {error}')
+        logger.error(f'Error occurred processing \'whitelist\' command: {error}')
         return ERROR_MESSAGES['default']
 
 
-def shillcontest(): #done FC
+def shillpost(): #done FC
     try:
-        resp_msg = f'''TBA'''
+        resp_msg = f'''Determine Your Own FATE\n\nFate Token Launches the 25th\n- Buy/Sell NFTs\n- Subscribe to content creators\n- Earn Passive Income for holding.\n- The First Utility Token with fair reflections\n- Purchase DeFi Tokens with a card (OmniDEX)\n\nEXTREMELY low hard cap pre-sale, whitelist ONLY\n\n\U00002705 Doxxed Team\n\U00002705 Registered Non-Profit\n\U00002705 Major Partners\n\nNO MARKETING TAX - ALL MONEY STAYS YOURS\n\nJoin our Telegram today!\n\U0001F449 https://t.me/FateToken \U0001F448'''
         return resp_msg
     except Exception as error:
-        logger.error(f'Error occurred processing \'tax\' command: {error}')
+        logger.error(f'Error occurred processing \'shillpost\' command: {error}')
+        return ERROR_MESSAGES['default']
+
+
+def presalecontest(): #done FC
+    try:
+        markup = types.InlineKeyboardMarkup()
+        btn_a = types.InlineKeyboardButton('\U0001F449 Enter Pre-Sale Contest \U0001F448',
+                                           callback_data='presale',
+                                           url=LINKS['presale'])
+        markup.add(btn_a)
+        resp_msg = f'''\U00002139 To enter Pre-Sale Contest click the button below.'''
+        return resp_msg, markup
+    except Exception as error:
+        logger.error(f'Error occurred processing \'presalecontest\' command: {error}')
         return ERROR_MESSAGES['default']
 
 
@@ -512,17 +533,22 @@ def lambda_handler(event, context):
         elif command == 'presale':
             logger.info('[ COMMAND ] Processing /presale request')
             resp_msg = presale()
-            bot.send_photo(chat_id, LINKS['website_photo'], resp_msg)
+            bot.send_photo(chat_id, LINKS['presale_photo'], resp_msg)
 
         elif command == 'whitelist':
             logger.info('[ COMMAND ] Processing /whitelist request')
             resp_msg = whitelist()
-            bot.send_photo(chat_id, LINKS['website_photo'], resp_msg)
+            bot.send_photo(chat_id, LINKS['whitelist_photo'], resp_msg)
             
-        elif command == 'shillcontest':
-            logger.info('[ COMMAND ] Processing /shillcontest request')
-            resp_msg = shillcontest()
-            bot.send_photo(chat_id, LINKS['website_photo'], resp_msg)
+        elif command == 'shillpost':
+            logger.info('[ COMMAND ] Processing /shillpost request')
+            resp_msg = shillpost()
+            bot.send_photo(chat_id, LINKS['shillpost_photo'], resp_msg)
+            
+        elif command == 'presalecontest':
+            logger.info('[ COMMAND ] Processing /presalecontest request')
+            resp_msg,markup = presalecontest()
+            bot.send_photo(chat_id, LINKS['contests_photo'], resp_msg, reply_markup=markup)
             
         elif command == 'price_info':
             logger.info('[ COMMAND ] Processing /price_info request')
