@@ -1,4 +1,4 @@
-#building for FatCake
+#MAIN FatCake Bot
 
 import os
 import sys
@@ -32,8 +32,10 @@ ERROR_MESSAGES = {
 }
 
 LINKS = {
-    'website': 'https://www.fatcaketoken.com',
+    'website': 'https://www.fatecosystem.com/ecosystem',
     'website_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
+    'fatpay': 'https://fatpay.to/',
+    'fatpad': 'https://www.fatecosystem.com/fatpad',
     'rewards': 'https://fatcakerewards.netlify.app',
     'rewards_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
     'pcs': 'https://pancakeswap.finance/swap?outputCurrency=0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
@@ -46,7 +48,7 @@ LINKS = {
     'bsc_liq': 'https://bscscan.com/address/0x6612879d031846723ecf7322afb4f3a97a045dc2',
     'holders_photo': 'https://i.ibb.co/M55HX2k/Neon-Effect.png',
     'liquidity': 'https://dxsale.app/app/v2_9/dxlockview?id=1805&add=0&type=lpdefi&chain=BSC',
-    'whitepaper': 'https://fatcake.club/pinkpaper/pinkpaper.pdf',
+    'whitepaper': 'https://ba1eeeb9-8780-4702-a175-a98ed2b9ba07.filesusr.com/ugd/8b9157_38f9aa8f32d14a61891d9fb2d1b05154.pdf',
     'whitepaper_photo': 'https://i.ibb.co/YyJtJmN/Pink-Paper-banner.png',
     'merch': 'https://www.fatecosystem.com/shop',
     'merch_photo': 'https://i.ibb.co/z5mLmpM/Merch.png',
@@ -58,10 +60,15 @@ LINKS = {
     'bogged': 'https://charts.bogged.finance/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
     'dex': 'https://www.dextools.io/app/pancakeswap/pair-explorer/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
     'guru':'https://dex.guru/token/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16-bsc',
+    
+    'usa': 'https://t.me/FatEcosystem',
     'china': 'https://t.me/FATEcosystemCH', 
     'germany': 'https://t.me/FATEcosystemDE',
     'india': 'https://t.me/FATEcosystemIN', 
-    'romania': 'https://t.me/FATEcosystemRO',
+    'italian': 'https://t.me/FATEcosystemIT',
+    'japan': 'https://t.me/FATEcosystemJP',
+    'arab': 'https://t.me/FATEcosystemAr',
+    'spain': 'https://t.me/FATEcosystemSP',
     'promotion': 't.me/fatpromo'
 }
 
@@ -100,13 +107,14 @@ FROSTING_IMAGES = [
 #liquidity - Locked Liquidity
 #tokenomics - Tokenomics Explained
 #nft - NFT Collections
-#pinkpaper - The FatCake Pink Paper
+#whitepaper - The F.A.T. Ecosystem White Paper
 #merch - Buy Fatcake / Frosting Merch
 #frosting - Frosting Social
 #channels - Fatcake International Telegram Groups
 #hashtags - Recommended Hashtags
 #marketing - Direct Marketing Proposals
 #price_info - Get Price Info
+#vote - Voting Websites
 
 
 SUPPORTED_COMMANDS = [
@@ -139,7 +147,9 @@ SUPPORTED_COMMANDS = [
     'FOR_THE_REAL_WORLD',
     'BRICK_BY_BRICK',
     'WE_DETERMINE_OUR_OWN_FATE',
-    'WE_WILL_NOT_BE_DETERRED'
+    'WE_WILL_NOT_BE_DETERRED',
+    'report',
+    'vote'
 ]
 
 EXCLUDED_COMMANDS = [
@@ -150,7 +160,7 @@ EXCLUDED_COMMANDS = [
 
 def allcommands():
     try:
-        resp_msg = f'''\U00002139 Here are all commands!\n\n/allcommands - Show All Commands\n/website - Visit Website\n/rewards - Track your Rewards\n/buy - Buy on PancakeSwap(V2)\n/tax - Tax Explained\n/slippage - Set Slippage on PancakeSwap(V2)\n/chart - Price Charts\n/contract - Contract Address\n/bscscan - BscScan Page\n/holders - FatCake Holders\n/liquidity - Locked Liquidity\n/tokenomics - Tokenomics Explained\n/nft - NFT Collections\n/pinkpaper - The FatCake Pink Paper\n/merch - Buy Fatcake / Frosting Merch\n/frosting - Frosting Social\n/channels - Fatcake International Telegram Groups\n/hashtags - Recommended Hashtags\n/marketing - Direct Marketing Proposals\n/price\_info - Get Price Info'''
+        resp_msg = f'''\U00002139 Here are all commands!\n\n/allcommands - Show All Commands\n/website - Visit Website\n/rewards - Track your Rewards\n/buy - Buy on PancakeSwap(V2)\n/tax - Tax Explained\n/slippage - Set Slippage on PancakeSwap(V2)\n/chart - Price Charts\n/contract - Contract Address\n/bscscan - BscScan Page\n/holders - FatCake Holders\n/liquidity - Locked Liquidity\n/tokenomics - Tokenomics Explained\n/nft - NFT Collections\n/whitepaper - The F.A.T. Ecosystem White Paper\n/merch - Buy Fatcake / Frosting Merch\n/frosting - Frosting Social\n/channels - International Telegram Groups\n/hashtags - Recommended Hashtags\n/marketing - Direct Marketing Proposals\n/price\_info - Get Price Info\n/vote - Voting Websites'''
         return resp_msg
     except Exception as error:
         logger.error(
@@ -161,11 +171,13 @@ def allcommands():
 def website(): #done FC
     try:
         markup = types.InlineKeyboardMarkup()
-        btn_a = types.InlineKeyboardButton('\U0001F30DWebsite',
-                                           callback_data='website',
-                                           url=LINKS['website'])
+        btn_a = types.InlineKeyboardButton('🌍 Fat Ecosystem', callback_data='website', url=LINKS['website'])
+        btn_b = types.InlineKeyboardButton('💸 Fat Pay', callback_data='fatpay', url=LINKS['fatpay'])
+        btn_c = types.InlineKeyboardButton('🚀 Fat Pad', callback_data='fatpad', url=LINKS['fatpad'])
         markup.add(btn_a)
-        resp_msg = f'''\U00002139 Click the button to visit our Website!'''
+        markup.add(btn_b)
+        markup.add(btn_c)
+        resp_msg = f'''\U00002139 Click the button to visit our Websites!'''
         return resp_msg, markup
     except Exception as error:
         logger.error(f'Error occurred processing \'website\' command: {error}')
@@ -237,7 +249,7 @@ def chart(): #done FC
 
 def contract(): #done FC
     try:
-        resp_msg = f'''\U00002139 Contract Address:\n0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16'''
+        resp_msg = f'''\U00002139 FatCake Contract Address:\n0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16'''
         return resp_msg
     except Exception as error:
         logger.error(f'Error occurred processing \'contract\' command: {error}')
@@ -299,17 +311,17 @@ def nft(): #done FC
         return ERROR_MESSAGES['default'], None
  
  
-def pinkpaper(): #done
+def whitepaper(): #done
     try:
         markup = types.InlineKeyboardMarkup()
-        btn_a = types.InlineKeyboardButton('\U0001F9C1 Pink Paper',
-                                           callback_data='pinkpaper',
+        btn_a = types.InlineKeyboardButton('📑 F.A.T. Ecosystem White Paper',
+                                           callback_data='whitepaper',
                                            url=LINKS['whitepaper'])
         markup.add(btn_a)
-        resp_msg = f'''\U00002139 Check out our Pink Paper'''
+        resp_msg = f'''\U00002139 Check out our White Paper'''
         return resp_msg, markup
     except Exception as error:
-        logger.error(f'Error occurred processing \'pinkpaper\' command: {error}')
+        logger.error(f'Error occurred processing \'whitepaper\' command: {error}')
         return ERROR_MESSAGES['default'], None
 
  
@@ -327,17 +339,23 @@ def merch(): #done FC
         return ERROR_MESSAGES['default'], None
 
 
-def channels(): #done FC
+def channels():
     try:
         markup = types.InlineKeyboardMarkup()
+        btn_usa = types.InlineKeyboardButton('🇺🇸 English', callback_data='usa', url=LINKS['usa'])
         btn_china = types.InlineKeyboardButton('\U0001F1E8\U0001F1F3 China', callback_data='china', url=LINKS['china'])
         btn_germany = types.InlineKeyboardButton('\U0001F1E9\U0001F1EA Germany', callback_data='germany', url=LINKS['germany'])
+        btn_japan = types.InlineKeyboardButton('\U0001F1EF\U0001F1F5 Japan', callback_data='japan', url=LINKS['japan'])
         btn_india = types.InlineKeyboardButton('\U0001F1EE\U0001F1F3 India', callback_data='india', url=LINKS['india'])
-        btn_romania = types.InlineKeyboardButton('\U0001F1F7\U0001F1F4 Romania', callback_data='romania', url=LINKS['romania'])
-        markup.add(btn_china, btn_germany)
-        markup.add(btn_india, btn_romania)
+        btn_italian = types.InlineKeyboardButton('\U0001F1EE\U0001F1F9 Italia', callback_data='italian', url=LINKS['italian'])
+        btn_arab = types.InlineKeyboardButton('\U0001F3F4 Arab', callback_data='arab', url=LINKS['arab'])
+        btn_spain = types.InlineKeyboardButton('\U0001F1EA\U0001F1F8 Spain', callback_data='spain', url=LINKS['spain'])
+        markup.add(btn_usa, btn_china),
+        markup.add(btn_india, btn_japan),
+        markup.add(btn_italian, btn_arab),
+        markup.add(btn_spain, btn_germany)
 
-        resp_msg = f'''\U00002139 Fatcake's International Telegram Groups!'''
+        resp_msg = f'''\U00002139 International Telegram Groups!'''
         return resp_msg, markup
     except Exception as error:
         logger.error(f'Error occurred processing \'channels\' command: {error}')
@@ -365,7 +383,7 @@ def hashtags(): #done FC
 
 def frosting(): #done FC
     try:
-        resp_msg = f'''FatCake Token is launching the world’s first decentralized social media platform.\n\nAnyone can make a channel and charge their users subscription fees, sell NFT’s, live stream and accept anonymous donations!\n\nThis will be a hit for influencers and musicians! Especially since all the revenue gets rewarded to token holders!\n\nRevenue generated by the three apps, ad revenue and two games will be put into the liquidity pool or distributed to the holders in cake rewards, which will boost the price and rewards generating volume adding to the normal volume already generated from the buying and selling of tokens.'''
+        resp_msg = f'''FAT Ecosystem is launching the world’s first decentralized social media platform.\n\nAnyone can make a channel and charge their users subscription fees, sell NFT’s, live stream and accept anonymous donations!\n\nThis will be a hit for influencers and musicians! Especially since all the revenue gets rewarded to token holders!\n\nRevenue generated by the three apps, ad revenue and two games will be put into the liquidity pool or distributed to the holders in cake rewards, which will boost the price and rewards generating volume adding to the normal volume already generated from the buying and selling of tokens.'''
         return resp_msg
     except Exception as error:
         logger.error(f'Error occurred processing \'frosting\' command: {error}')
@@ -609,16 +627,16 @@ def lambda_handler(event, context):
             resp_msg, markup = channels()
             bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
             
-        elif command == 'pinkpaper' or command == f'whitepaper':
-            logger.info('[ COMMAND ] Processing /pinkpaper request')
-            resp_msg, markup = pinkpaper()
+        elif command == 'whitepaper':
+            logger.info('[ COMMAND ] Processing /whitepaper request')
+            resp_msg, markup = whitepaper()
             bot.send_photo(chat_id, random.choice(FATCAKE_IMAGES), resp_msg, reply_markup=markup)
             
         elif command == 'frosting':
             logger.info('[ COMMAND ] Processing /frosting request')
             resp_msg = frosting()
             bot.send_photo(chat_id, random.choice(FROSTING_IMAGES), resp_msg)
-            
+
     except Exception as error:
         logger.error(f'[ FAIL ] Unhandled event: {error}')
         return {

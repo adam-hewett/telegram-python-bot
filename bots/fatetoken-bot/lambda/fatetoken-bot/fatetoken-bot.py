@@ -24,43 +24,48 @@ ENV_VARS = {
     'BOT_NAME': ''
 }
 
-CONTRACT_ADDRESS = '0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16'
+CONTRACT_ADDRESS = ''
 
 ERROR_MESSAGES = {
     'default': 'Sorry, an error occurred processing your request, wait a few seconds and try again.'
 }
 
 LINKS = {
-    'website': 'fatecosystem.com', #done
-    'website_photo': 'https://i.ibb.co/n7z6R9H/Website.png', #done
-    'rewards': 'https://fatcakerewards.netlify.app',
-    'rewards_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
-    'pcs': 'https://pancakeswap.finance/swap?outputCurrency=0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
-    'pcs_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
-    'tax_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
+    'website': 'fatecosystem.com',
+    'website_photo': 'https://i.ibb.co/syBz3Hf/website.jpg',
+    'rewards': '',
+    'rewards_photo': '',
+    'pcs': '',
+    'pcs_photo': '',
+    'tax_photo': '',
     'slippage_photo': '',
     'chart_photo': '',
-    'bscscan': 'https://bscscan.com/token/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
-    'bscscan_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
-    'bsc_liq': 'https://bscscan.com/address/0x6612879d031846723ecf7322afb4f3a97a045dc2',
-    'holders_photo': 'https://i.ibb.co/M55HX2k/Neon-Effect.png',
-    'liquidity': 'https://dxsale.app/app/v2_9/dxlockview?id=1805&add=0&type=lpdefi&chain=BSC',
-    'whitepaper': 'https://fatcake.club/pinkpaper/pinkpaper.pdf',
-    'whitepaper_photo': 'https://i.ibb.co/YyJtJmN/Pink-Paper-banner.png',
+    'bscscan': '',
+    'bscscan_photo': '',
+    'bsc_liq': '',
+    'holders_photo': '',
+    'liquidity': '',
+    'whitepaper': 'https://ba1eeeb9-8780-4702-a175-a98ed2b9ba07.filesusr.com/ugd/8b9157_38f9aa8f32d14a61891d9fb2d1b05154.pdf',
+    'whitepaper_photo': '',
     'merch': 'https://www.fatecosystem.com/shop',
-    'merch_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
+    'merch_photo': 'https://i.ibb.co/z5mLmpM/Merch.png',
     'nft': 'https://treasureland.market/homepage?address=0xa7c3aabf911b8ff6cdf61eb9eb5147fe5d8bfddd',
-    'nft_photo': 'https://i.ibb.co/tCkPNsG/Place-Holder.png',
-    'poocoin': 'https://poocoin.app/tokens/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
-    'bogged': 'https://charts.bogged.finance/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
-    'dex': 'https://www.dextools.io/app/pancakeswap/pair-explorer/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16',
-    'guru':'https://dex.guru/token/0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16-bsc',
-    'china': 'https://t.me/FatCakeCH', 
-    'germany': 'https://t.me/FatCakeDE',
-    'india': 'https://t.me/FatCakeIN', 
-    'romania': 'https://t.me/FatCakeRomania',
+    'nft_2': 'https://opensea.io/collection/frosting-social-avatar-collection',
+    'rowdy_nft': 'https://opensea.io/collection/rowdyrabbits',
+    'nft_photo': '',
+    'poocoin': '',
+    'bogged': '',
+    'dex': '',
+    'guru': '',
+    'china': 'https://t.me/FATEcosystemCH', 
+    'germany': 'https://t.me/FATEcosystemDE',
+    'india': 'https://t.me/FATEcosystemIN', 
+    'italian': 'https://t.me/FATEcosystemIT',
+    'japan': 'https://t.me/FATEcosystemJP',
+    'arab': 'https://t.me/FATEcosystemAr',
+    'spain': 'https://t.me/FATEcosystemSP',
     'promotion': 't.me/fatpromo',
-    'presale': 'https://sweepwidget.com/view/35291-2dmx3chb',
+    'presale': 'https://gleam.io/V8EXv/fate-whitelist-contest',
     'presale_photo': 'https://i.ibb.co/vjBt5Wt/pre-sale.png',
     'whitelist_photo': 'https://i.ibb.co/j54C9Tn/white-list.png',
     'contests_photo': 'https://i.ibb.co/vdpx2Fj/contest.png',
@@ -69,35 +74,50 @@ LINKS = {
 }
 
 
-#allcommands - Show all Commands
+#allcommands - List of Commands
 #website - Visit our Website
-#rewards - Track your Earned Rewards
+#presale - Presale Info
+#hashtags - Recommended Hashtags
+#shillpost - Shill Post for Sharing
+#vote - Voting Websites
+#marketing - Direct all Marketing Proposals
+#channels - Fatcake International Telegram Groups
+#merch - Buy Fatcake / Frosting Merch
+#whitepaper - Read our White Paper
+#nft - NFT Collections
+#presalecontest - Gleam Contest Info
+
+
+#allcommands - Show All Commands
+#website - Visit Website
+#rewards - Track your Rewards
 #buy - Buy on PancakeSwap(V2)
-#tax - Breakdown of our Tax
-#slippage - Set Slippage on PancakeSwap
-#chart - Check our Charts
+#tax - Tax Explained
+#slippage - Set Slippage on PancakeSwap(V2)
+#chart - Price Charts
 #contract - Contract Address
 #bscscan - BscScan Page
-#holders - Holders of this Token
-#liquidity - Check Locked Liquidity
-#tokenomics - Overview of our tokenomics
-#nft - Fat Punk NFTs
+#holders - FatCake Holders
+#liquidity - Locked Liquidity
+#tokenomics - Tokenomics Explained
+#nft - NFT Collections
 #pinkpaper - The FatCake Pink Paper
 #merch - Buy Fatcake / Frosting Merch
+#frosting - Frosting Social
 #channels - Fatcake International Telegram Groups
 #hashtags - Recommended Hashtags
-#marketing - Direct all Marketing Proposals
+#marketing - Direct Marketing Proposals
 #price_info - Get Price Info
-
+#vote - Voting Websites
 
 SUPPORTED_COMMANDS = [
     'allcommands',
     'website',
     'presale',
     'whitelist',
-    'presalecontest',
     'hashtags',
-    'shillpost'
+    'shillpost',
+    'vote',
 #    'rewards',
 #    'buy',
 #    'tax',
@@ -108,14 +128,16 @@ SUPPORTED_COMMANDS = [
 #    'holders',
 #    'liquidity',
 #    'tokenomics',
-#    'nft',
-#    'pinkpaper',
-#    'whitepaper',
-#    'merch',
-#    'store',
-#    'channels',
+    'nft',
+    'pinkpaper',
+    'whitepaper',
+    'merch',
+    'store',
+    'channels',
+    'international',
+    'presalecontest',
 #    'price_info',
-#    'marketing'
+    'marketing'
 ]
 
 EXCLUDED_COMMANDS = [
@@ -126,7 +148,7 @@ EXCLUDED_COMMANDS = [
 
 def allcommands():
     try:
-        resp_msg = f'''\U00002139 Here are all commands!\n\n/website - Visit our Website\n/presale - Presale Info\n/whitelist - Whitelist Info\n/presalecontest - Pre-Sale Contest Info\n/hashtags - Recommended Hashtags\n/shillpost - Shill Post for Sharing'''#/rewards - Track your Earned Rewards\n/buy - Buy on PancakeSwap(V2)\n/tax - Breakdown of our Tax\n/slippage - Set Slippage on PancakeSwap\n/chart - Check our Charts\n/contract - Contract Address\n/bscscan - BscScan Page\n/holders - Holders of this Token\n/liquidity - Check Locked Liquidity\n/tokenomics - Overview of our tokenomics\n/nft - Fat Punk NFTs\n/pinkpaper - The FatCake Pink Paper\n/merch - Buy Fatcake / Frosting Merch\n/channels - Fatcake International Telegram Groups\n/hashtags - Recommended Hashtags\n/marketing - Direct all Marketing Proposals'''
+        resp_msg = f'''\U00002139 Here are all commands!\n\n/website - Visit our Website\n/presale - Presale Info\n/hashtags - Recommended Hashtags\n/shillpost - Shill Post for Sharing\n/marketing - Direct all Marketing Proposals\n/vote - Voting Websites\n/channels - Fatcake International Telegram Groups\n/merch - Buy Fatcake / Frosting Merch\n/whitepaper - Read our White Paper\n/nft - NFT Collections'''#/rewards - Track your Earned Rewards\n/buy - Buy on PancakeSwap(V2)\n/tax - Breakdown of our Tax\n/slippage - Set Slippage on PancakeSwap\n/chart - Check our Charts\n/contract - Contract Address\n/bscscan - BscScan Page\n/holders - Holders of this Token\n/liquidity - Check Locked Liquidity\n/tokenomics - Overview of our tokenomics\n/nft - Fat Punk NFTs\n/pinkpaper - The FatCake Pink Paper\n/merch - Buy Fatcake / Frosting Merch\n/channels - Fatcake International Telegram Groups\n/hashtags - Recommended Hashtags\n/marketing - Direct all Marketing Proposals'''
         return resp_msg
     except Exception as error:
         logger.error(
@@ -134,7 +156,7 @@ def allcommands():
         return ERROR_MESSAGES['default']
 
 
-def website(): #done FC
+def website():
     try:
         markup = types.InlineKeyboardMarkup()
         btn_a = types.InlineKeyboardButton('\U0001F30DWebsite',
@@ -147,30 +169,31 @@ def website(): #done FC
         logger.error(f'Error occurred processing \'website\' command: {error}')
         return ERROR_MESSAGES['default'], None
 
-def presale(): #done FC
+
+def presale():
     try:
-        resp_msg = f'''We are building a social media app that integrates cryptocurrency so that users can make passive income with their data, rather than facebook selling your data for billions. Now you get rewarded passively from the app revenue.... crypto influencers, streamers, podcast hosts, etc can make a profile, sell NFTs, set subscription prices to view exclusive content, AND make passive income from just using it.\n\nSo the trading rewards are great, but this is the first crypto-business to reward users with its revenue.\n\nBy owning the token you are part shareholder of the company.\n\nPre-Sale is expected on Oct 25th, but we may opt for getting an official audit by a big name before launch.\n\nPre-Sale will be whitelist ONLY - 400 bnb Hard Cap - 1.5 bnb max contribution.\n\nThe longer we hype the better anyway ;)'''
+        resp_msg = f'''We are building a social media app that integrates cryptocurrency so that users can make passive income with their data, rather than facebook selling your data for billions. Now you get rewarded passively from the app revenue.... crypto influencers, streamers, podcast hosts, etc can make a profile, sell NFTs, set subscription prices to view exclusive content, AND make passive income from just using it.\n\nSo the trading rewards are great, but this is the first crypto-business to reward users with its revenue.\n\nBy owning the token you are part shareholder of the company.\n\nPre-Sale is expected on Oct 25th, but we may opt for getting an official audit by a big name before launch.\n\nPre-Sale will be whitelist ONLY - 450 bnb Hard Cap - 1.5 bnb max contribution.\n\nThe longer we hype the better anyway ;)\n\n/presalecontest - Gleam Contest Info'''
         return resp_msg
     except Exception as error:
         logger.error(f'Error occurred processing \'presale\' command: {error}')
         return ERROR_MESSAGES['default']
 
 
-def whitelist(): #done FC
+def shillpost():
     try:
-        resp_msg = f'''⭐️Whitelist Contest⭐️\n\n📝Whitelist Contest: sweepwidget.com/view/35291-2dmx3chb\n\nParticipate and get a chance to win a spot!\n🙋 100 Whitelist spots!⚠️\n NOTE: Top 25 Shillers get a spot!🔥\n\n📄Whitelist info & Presale:\nTotal Whitelist Spots: 300\n200 Spots reserved for contests.\n100 Spots reserved for Frosting Beta\n\n⚡️400 BNB Hardcap / 1.5 Max Buy⚡️\n\n⚠️ There won't be a public presale! \nAfter the whitelist presale will end, the token will be launched for everyone.'''
-        return resp_msg
-    except Exception as error:
-        logger.error(f'Error occurred processing \'whitelist\' command: {error}')
-        return ERROR_MESSAGES['default']
-
-
-def shillpost(): #done FC
-    try:
-        resp_msg = f'''Determine Your Own FATE\n\nFate Token Launches the 25th\n- Buy/Sell NFTs\n- Subscribe to content creators\n- Earn Passive Income for holding.\n- The First Utility Token with fair reflections\n- Purchase DeFi Tokens with a card (OmniDEX)\n\nEXTREMELY low hard cap pre-sale, whitelist ONLY\n\n\U00002705 Doxxed Team\n\U00002705 Registered Non-Profit\n\U00002705 Major Partners\n\nNO MARKETING TAX - ALL MONEY STAYS YOURS\n\nJoin our Telegram today!\n\U0001F449 https://t.me/FateToken \U0001F448'''
+        resp_msg = f'''Determine Your Own FATE\n\nFate Token Launches the 25th\n- Buy/Sell NFTs\n- Subscribe to content creators\n- Earn Passive Income for holding.\n- The First Utility Token with fair reflections\n- Purchase DeFi Tokens with a card (OmniDEX)\n\nEXTREMELY low hard cap pre-sale, whitelist ONLY\n\n\U00002705 Doxxed Team\n\U00002705 Registered Non-Profit\n\U00002705 Major Partners\n\nNO MARKETING TAX - ALL MONEY STAYS YOURS\n\nJoin [FATE Tokens Telegram](https://t.me/FateToken) today!'''
         return resp_msg
     except Exception as error:
         logger.error(f'Error occurred processing \'shillpost\' command: {error}')
+        return ERROR_MESSAGES['default']
+
+
+def vote():
+    try:
+        resp_msg = f'''List of Voting Websites.\n\n1. [CoinMooner](https://coinmooner.com/coin/5234)\n2. [CoinSniper](https://coinsniper.net/coin/15996)\n3. [CoinMoonHunt](https://coinmoonhunt.com/coin/Fate)\n4. [CoinCatapult](https://coincatapult.com/coin/fate-fate)\n5. [CoinDiscovery](https://coindiscovery.app/coin/fate-token)\n6. [NextCoin](https://nextcoin.us/coin/fate-token/)\n7. [Watcher.Guru](https://watcher.guru/coin/fate-token)\n8. [FreshCoins.io](https://www.freshcoins.io/coins/fate-token)'''
+        return resp_msg
+    except Exception as error:
+        logger.error(f'Error occurred processing \'vote\' command: {error}')
         return ERROR_MESSAGES['default']
 
 
@@ -188,7 +211,7 @@ def presalecontest(): #done FC
         return ERROR_MESSAGES['default']
 
 
-def rewards(): #done FC
+def rewards():
     try:
         markup = types.InlineKeyboardMarkup()
         btn_a = types.InlineKeyboardButton('Check \U0001F9C1 Rewards',
@@ -202,7 +225,7 @@ def rewards(): #done FC
         return ERROR_MESSAGES['default'], None
 
 
-def buy(): #done FC
+def buy():
     try:
         markup = types.InlineKeyboardMarkup()
         btn_a = types.InlineKeyboardButton('\U0001F95E PancakeSwap(V2)', callback_data='buy', url=LINKS['pcs'])
@@ -214,7 +237,7 @@ def buy(): #done FC
         return ERROR_MESSAGES['default'], None
 
 
-def tax(): #done FC
+def tax():
     try:
         resp_msg = f'''\U00002139 Every Transaction is charged a *15% tax*, which is split into three separate functions.\n\n*10%* is converted into CAKE and distributed to holders.\n*3%* is converted to CAKE and sent to a marketing wallet.\n*2%* is directly injected into the Liquidity Pool'''
         return resp_msg
@@ -223,7 +246,7 @@ def tax(): #done FC
         return ERROR_MESSAGES['default']
 
 
-def slippage(): #done FC
+def slippage():
     try:
         resp_msg = f'''\n\n\U00002139 Set slippage to minimum 15% on PancakeSwap(V2).'''
         return resp_msg
@@ -233,7 +256,7 @@ def slippage(): #done FC
         return ERROR_MESSAGES['default']
 
 
-def chart(): #done FC
+def chart():
     try:
         markup = types.InlineKeyboardMarkup()
         btn_bogged = types.InlineKeyboardButton('\U0001F4CABogged', callback_data='bogged', url=LINKS['bogged'])
@@ -249,7 +272,7 @@ def chart(): #done FC
         return ERROR_MESSAGES['default'], None
 
 
-def contract(): #done FC
+def contract():
     try:
         resp_msg = f'''\U00002139 Contract Address:\n0xB7Dba4C673beDB174DC3Ff7Ec65d17C863d39b16'''
         return resp_msg
@@ -258,7 +281,7 @@ def contract(): #done FC
         return ERROR_MESSAGES['default']
 
 
-def bscscan(): #done FC
+def bscscan():
     try:
         markup = types.InlineKeyboardMarkup()
         btn_a = types.InlineKeyboardButton('\U0001F5A8BSCscan',
@@ -272,7 +295,7 @@ def bscscan(): #done FC
         return ERROR_MESSAGES['default'], None
 
 
-def liquidity(): #done FC
+def liquidity():
     try:
         markup = types.InlineKeyboardMarkup()
         btn_a = types.InlineKeyboardButton('\U0001F512Liquidity on DxSale',
@@ -286,7 +309,7 @@ def liquidity(): #done FC
         return ERROR_MESSAGES['default'], None
 
 
-def tokenomics(): #done FC
+def tokenomics():
     try:
         photo_url = 'https://i.ibb.co/HCVNFbT/photo-2021-09-23-19-05-25.jpg'
         resp_msg = ''
@@ -297,33 +320,37 @@ def tokenomics(): #done FC
         return ERROR_MESSAGES['default'], None
 
 
-def nft(): #done FC
+def nft(): 
     try:
         markup = types.InlineKeyboardMarkup()
-        btn_a = types.InlineKeyboardButton('\U0001F9C1 Fat Punk NFTs', callback_data='nft', url=LINKS['nft'])
+        btn_a = types.InlineKeyboardButton('\U0001F47E FatPunk Collection', callback_data='nft', url=LINKS['nft'])
+        btn_b = types.InlineKeyboardButton('\U0001F9C1 Frosting Avatar Collection', callback_data='nft_2', url=LINKS['nft_2'])
+        btn_c = types.InlineKeyboardButton('\U0001F430 Rowdy Rabbits Collection', callback_data='rowdy_nft', url=LINKS['rowdy_nft'])
         markup.add(btn_a)
-        resp_msg = '\U00002139 Check out our Fat Punk NFTs!'
+        markup.add(btn_b)
+        markup.add(btn_c)
+        resp_msg = '\U00002139 Check out our NFT Collections!'
         return resp_msg, markup
     except Exception as error:
         logger.error(f'Error occurred processing \'nft\' command: {error}')
         return ERROR_MESSAGES['default'], None
+
  
- 
-def pinkpaper(): #done
+def whitepaper():
     try:
         markup = types.InlineKeyboardMarkup()
-        btn_a = types.InlineKeyboardButton('\U0001F9C1 Pink Paper',
-                                           callback_data='pinkpaper',
+        btn_a = types.InlineKeyboardButton('\U0001F9C1 White Paper',
+                                           callback_data='whitepaper',
                                            url=LINKS['whitepaper'])
         markup.add(btn_a)
-        resp_msg = f'''\U00002139 Check out our Pink Paper'''
+        resp_msg = f'''\U00002139 Check out our White Paper'''
         return resp_msg, markup
     except Exception as error:
-        logger.error(f'Error occurred processing \'pinkpaper\' command: {error}')
+        logger.error(f'Error occurred processing \'whitepaper\' command: {error}')
         return ERROR_MESSAGES['default'], None
 
  
-def merch(): #done FC
+def merch():
     try:
         markup = types.InlineKeyboardMarkup()
         btn_a = types.InlineKeyboardButton('\U0001F455 Merch Store',
@@ -337,33 +364,37 @@ def merch(): #done FC
         return ERROR_MESSAGES['default'], None
 
 
-def channels(): #done FC
+def channels():
     try:
         markup = types.InlineKeyboardMarkup()
         btn_china = types.InlineKeyboardButton('\U0001F1E8\U0001F1F3 China', callback_data='china', url=LINKS['china'])
         btn_germany = types.InlineKeyboardButton('\U0001F1E9\U0001F1EA Germany', callback_data='germany', url=LINKS['germany'])
+        btn_japan = types.InlineKeyboardButton('\U0001F1EF\U0001F1F5 Japan', callback_data='japan', url=LINKS['japan'])
         btn_india = types.InlineKeyboardButton('\U0001F1EE\U0001F1F3 India', callback_data='india', url=LINKS['india'])
-        btn_romania = types.InlineKeyboardButton('\U0001F1F7\U0001F1F4 Romania', callback_data='romania', url=LINKS['romania'])
-        markup.add(btn_china, btn_germany)
-        markup.add(btn_india, btn_romania)
+        btn_italian = types.InlineKeyboardButton('\U0001F1EE\U0001F1F9 Italia', callback_data='italian', url=LINKS['italian'])
+        btn_arab = types.InlineKeyboardButton('\U0001F3F4 Arab', callback_data='arab', url=LINKS['arab'])
+        btn_spain = types.InlineKeyboardButton('\U0001F1EA\U0001F1F8 Spain', callback_data='spain', url=LINKS['spain'])
+        markup.add(btn_china, btn_germany),
+        markup.add(btn_india, btn_japan),
+        markup.add(btn_italian, btn_arab, btn_spain)
 
-        resp_msg = f'''\U00002139 Fatcake's International Telegram Groups!'''
+        resp_msg = f'''\U00002139 International Telegram Groups!'''
         return resp_msg, markup
     except Exception as error:
         logger.error(f'Error occurred processing \'channels\' command: {error}')
         return ERROR_MESSAGES['default'], None
 
 
-def marketing(): #done FC
+def marketing():
     try:
-        resp_msg = f'''Please direct all marketing proposals and promotions to https://t.me/fatpromo.'''
+        resp_msg = f'''\U00002139 Please direct all marketing proposals and promotions to [FatPromo Group](https://t.me/fatpromo).'''
         return resp_msg
     except Exception as error:
         logger.error(f'Error occurred processing \'marketing\' command: {error}')
         return ERROR_MESSAGES['default']
 
 
-def hashtags(): #done FC
+def hashtags():
     try:
         resp_msg = f'''Primary Hashtags:\n#FATE #FATEtoken #FrostingSocial #FateCake\n\nSecondary Hashtags:\n#BSCGems #Binance #BinanceSmartChain #Cryptocurency #cryptomoonshots #PancakeSwap #btc #ElonMusk #bsc #crypto #investment #money #fx #eth #wealth #blockchain #financialfreedom #shib #doge #floki'''
         return resp_msg
@@ -523,22 +554,24 @@ def lambda_handler(event, context):
         if command == 'holders':
             logger.info('[ COMMAND ] Processing /holders request')
             resp_msg = fetch_holders_command()
-            bot.send_photo(chat_id, LINKS['holders_photo'], resp_msg)
+#            bot.send_photo(chat_id, LINKS['holders_photo'], resp_msg)
+            bot.send_message(chat_id, resp_msg)
             
         elif command == 'website':
             logger.info('[ COMMAND ] Processing /website request')
             resp_msg, markup = website()
             bot.send_photo(chat_id, LINKS['website_photo'], resp_msg, reply_markup=markup)
+#            bot.send_message(chat_id, resp_msg, reply_markup=markup)
 
-        elif command == 'presale':
+        elif command == 'presale' or command == f'whitelist':
             logger.info('[ COMMAND ] Processing /presale request')
             resp_msg = presale()
             bot.send_photo(chat_id, LINKS['presale_photo'], resp_msg)
 
-        elif command == 'whitelist':
-            logger.info('[ COMMAND ] Processing /whitelist request')
-            resp_msg = whitelist()
-            bot.send_photo(chat_id, LINKS['whitelist_photo'], resp_msg)
+#        elif command == 'whitelist':
+#            logger.info('[ COMMAND ] Processing /whitelist request')
+#            resp_msg = whitelist()
+#            bot.send_photo(chat_id, LINKS['whitelist_photo'], resp_msg)
             
         elif command == 'shillpost':
             logger.info('[ COMMAND ] Processing /shillpost request')
@@ -555,25 +588,25 @@ def lambda_handler(event, context):
             resp_msg = price_info()
             bot.send_message(chat_id, resp_msg)
             
-        elif command == 'rewards':
-            logger.info('[ COMMAND ] Processing /rewards request')
-            resp_msg, markup = rewards()
-            bot.send_photo(chat_id, LINKS['rewards_photo'], resp_msg, reply_markup=markup)
+#        elif command == 'rewards':
+#            logger.info('[ COMMAND ] Processing /rewards request')
+#            resp_msg, markup = rewards()
+#            bot.send_photo(chat_id, LINKS['rewards_photo'], resp_msg, reply_markup=markup)
             
-        elif command == 'buy':
-            logger.info('[ COMMAND ] Processing /buy request')
-            resp_msg, markup = buy()
-            bot.send_photo(chat_id, LINKS['pcs_photo'], resp_msg, reply_markup=markup)
+#        elif command == 'buy':
+#            logger.info('[ COMMAND ] Processing /buy request')
+#            resp_msg, markup = buy()
+#            bot.send_photo(chat_id, LINKS['pcs_photo'], resp_msg, reply_markup=markup)
             
         elif command == 'nft':
             logger.info('[ COMMAND ] Processing /nft request')
             resp_msg, markup = nft()
-            bot.send_photo(chat_id, LINKS['nft_photo'], resp_msg, reply_markup=markup)
+            bot.send_message(chat_id, resp_msg, reply_markup=markup)
             
-        elif command == 'tax':
-            logger.info('[ COMMAND ] Processing /tax request')
-            resp_msg = tax()
-            bot.send_photo(chat_id, LINKS['tax_photo'], resp_msg)
+#        elif command == 'tax':
+#            logger.info('[ COMMAND ] Processing /tax request')
+#            resp_msg = tax()
+#            bot.send_photo(chat_id, LINKS['tax_photo'], resp_msg)
             
         elif command == 'marketing':
             logger.info('[ COMMAND ] Processing /marketing request')
@@ -585,55 +618,62 @@ def lambda_handler(event, context):
             resp_msg = hashtags()
             bot.send_message(chat_id, resp_msg)
             
-        elif command == 'slippage':
-            logger.info('[ COMMAND ] Processing /slippage request')
-            resp_msg = slippage()
-            bot.send_message(chat_id, resp_msg)
+#        elif command == 'slippage':
+#            logger.info('[ COMMAND ] Processing /slippage request')
+#            resp_msg = slippage()
+#            bot.send_message(chat_id, resp_msg)
             
-        elif command == 'chart' or command == f'charts':
-            logger.info('[ COMMAND ] Processing /chart request')
-            resp_msg, markup = chart()
-            bot.send_message(chat_id, resp_msg, reply_markup=markup)
+#        elif command == 'chart' or command == f'charts':
+#            logger.info('[ COMMAND ] Processing /chart request')
+#            resp_msg, markup = chart()
+#            bot.send_message(chat_id, resp_msg, reply_markup=markup)
             
-        elif command == 'contract':
-            logger.info('[ COMMAND ] Processing /contract request')
-            resp_msg = contract()
-            bot.send_message(chat_id, resp_msg)
+#        elif command == 'contract':
+#            logger.info('[ COMMAND ] Processing /contract request')
+#            resp_msg = contract()
+#            bot.send_message(chat_id, resp_msg)
             
-        elif command == 'bscscan':
-            logger.info('[ COMMAND ] Processing /bscscan request')
-            resp_msg, markup = bscscan()
-            bot.send_photo(chat_id, LINKS['bscscan_photo'], resp_msg, reply_markup=markup)
+#        elif command == 'bscscan':
+#            logger.info('[ COMMAND ] Processing /bscscan request')
+#            resp_msg, markup = bscscan()
+#            bot.send_photo(chat_id, LINKS['bscscan_photo'], resp_msg, reply_markup=markup)
             
-        elif command == 'liquidity':
-            logger.info('[ COMMAND ] Processing /liquidity request')
-            resp_msg, markup = liquidity()
-            bot.send_message(chat_id, resp_msg, reply_markup=markup)
+#        elif command == 'liquidity':
+#            logger.info('[ COMMAND ] Processing /liquidity request')
+#            resp_msg, markup = liquidity()
+#            bot.send_message(chat_id, resp_msg, reply_markup=markup)
             
         elif command == 'allcommands':
             logger.info('[ COMMAND ] Processing /allcommands request')
             resp_msg = allcommands()
             bot.send_message(chat_id, resp_msg)
             
-        elif command == 'tokenomics':
-            logger.info('[ COMMAND ] Processing /tokenomics request')
-            resp_msg, photo = tokenomics()
-            bot.send_photo(chat_id, photo, resp_msg)
+#        elif command == 'tokenomics':
+#            logger.info('[ COMMAND ] Processing /tokenomics request')
+#            resp_msg, photo = tokenomics()
+#            bot.send_photo(chat_id, photo, resp_msg)
             
         elif command == 'merch' or command == f'store':
             logger.info('[ COMMAND ] Processing /merch request')
             resp_msg, markup = merch()
             bot.send_photo(chat_id, LINKS['merch_photo'], resp_msg, reply_markup=markup)
+#            bot.send_message(chat_id, resp_msg, reply_markup=markup)
             
-        elif command == 'channels':
+        elif command == 'channels' or command == f'international':
             logger.info('[ COMMAND ] Processing /channels request')
             resp_msg, markup = channels()
             bot.send_message(chat_id, resp_msg, reply_markup=markup)
             
-        elif command == 'pinkpaper' or command == f'whitepaper':
-            logger.info('[ COMMAND ] Processing /pinkpaper request')
-            resp_msg, markup = pinkpaper()
-            bot.send_photo(chat_id, LINKS['whitepaper_photo'], resp_msg, reply_markup=markup)
+        elif command == 'whitepaper' or command == f'pinkpaper':
+            logger.info('[ COMMAND ] Processing /whitepaper request')
+            resp_msg, markup = whitepaper()
+#            bot.send_photo(chat_id, LINKS['whitepaper_photo'], resp_msg, reply_markup=markup)
+            bot.send_message(chat_id, resp_msg, reply_markup=markup)
+            
+        elif command == 'vote':
+            logger.info('[ COMMAND ] Processing /vote request')
+            resp_msg = vote()
+            bot.send_message(chat_id, resp_msg)
             
     except Exception as error:
         logger.error(f'[ FAIL ] Unhandled event: {error}')
