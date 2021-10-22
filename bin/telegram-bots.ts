@@ -14,3 +14,9 @@ new FatcakeBotStack(app, 'FatcakeBotStack', {});
 
 import { FateTokenBotStack } from '../bots/fatetoken-bot/fatetoken-bot-stack';
 new FateTokenBotStack(app, 'FateTokenBotStack', {});
+
+import { InfiniteOneBotStack } from '../bots/infiniteone-bot/infiniteone-bot-stack';
+new InfiniteOneBotStack(app, 'InfiniteOneBotStack', {});
+
+import { SeaChainTokenBotStack } from '../bots/seachaintoken-bot/seachaintoken-bot-stack';
+new SeaChainTokenBotStack(app, 'SeaChainTokenBotStack', {});
