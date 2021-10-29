@@ -1,0 +1,7 @@
+requests
+simplejson
+matplotlib
+mplfinance
+pandas
+beautifulSoup4
+cloudscraper
