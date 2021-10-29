@@ -2,6 +2,7 @@ import * as cdk from '@aws-cdk/core';
 import * as lambda from '@aws-cdk/aws-lambda';
 import * as apigateway from '@aws-cdk/aws-apigateway';
 import * as logs from '@aws-cdk/aws-logs';
+import * as s3 from '@aws-cdk/aws-s3';
 
 export class TestBotStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
@@ -10,6 +11,8 @@ export class TestBotStack extends cdk.Stack {
         const botName = 'test-bot';
         const path = `bots/${botName}/lambda`;
         const layerPath = 'shared/lambda-layers';
+
+        const priceBucket = s3.Bucket.fromBucketName(this, 'price-bucket', 'price-processor');
 
         const botLibsLayer = new lambda.LayerVersion(this, 'bot-libs', {
             code: lambda.Code.fromAsset(`${layerPath}/bot-libs`),
@@ -29,6 +32,8 @@ export class TestBotStack extends cdk.Stack {
             logRetention: logs.RetentionDays.ONE_WEEK,
             timeout: cdk.Duration.seconds(10),
         });
+
+        priceBucket.grantRead(lbd);
 
         const restAPI = new apigateway.RestApi(this, `${botName}-api`, {
             restApiName: botName,
