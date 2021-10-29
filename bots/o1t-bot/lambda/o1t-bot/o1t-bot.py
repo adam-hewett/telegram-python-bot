@@ -19,6 +19,9 @@ from bs4 import BeautifulSoup
 import requests
 import cloudscraper
 
+import boto3
+s3 = boto3.resource('s3')
+
 # Environment Variables
 ENV_VARS = {
     'telegramApiKey': '',
@@ -431,7 +434,7 @@ def get_liquidity_tokens():
         for span in liq_spans:
             print(span.text)
             if span.text.split(' ')[1] == 'WBNB':
-                liq_tokens['WBNB'] = span.text.split(' ')[0]
+                liq_tokens['WBNB'] = span.text.split('.')[0]
             if span.text.split(' ')[1] == 'O1T':
                 liq_tokens['O1T'] = span.text.split(' ')[0]
         print(liq_tokens)
@@ -455,42 +458,13 @@ def fetch_lp():
 
 def priceinfo():
     try: 
-        price_response = requests.get('https://api.coingecko.com/api/v3/simple/price?ids=only-1-token%2Cbinancecoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true')
-        price_data = price_response.json()
-        o1t_price = "${:,.0f}".format(price_data['only-1-token']['usd'])
-        o1t_change = int(price_data['only-1-token']['usd_24h_change'])
-        o1t_vol = "${:,.0f}".format(price_data['only-1-token']['usd_24h_vol'])
-        
-        get_marketcap = float((price_data['only-1-token']['usd']) * 1)
-        marketcap = locale.currency( get_marketcap, grouping=True ).split('.')[0]
-        
-        bnb_price = locale.currency( price_data['binancecoin']['usd'], grouping=True )
-        bnb_change = int(price_data['binancecoin']['usd_24h_change'])
-        
-        holders = fetch_holders()
-        lp_holders=fetch_lp_holders()
-        
-        liq_tokens = get_liquidity_tokens()
-        bnb_liq_value = float(liq_tokens['WBNB']) * float(price_data['binancecoin']['usd'])
-        bnb_liq_dlr_value = locale.currency( bnb_liq_value, grouping=True )
-        o1t_liq_value = float(liq_tokens['O1T']) * float(price_data['only-1-token']['usd'])
-        o1t_liq_dlr_value = locale.currency( o1t_liq_value, grouping=True )
-        liq_total = locale.currency( float(bnb_liq_value) + float(o1t_liq_value), grouping=True )
-        
-#        bnb_o1t_value = (float(price_data['only-1-token']['usd']) / float(price_data['binancecoin']['usd']) * 0.011)
-#        bnb_o1t_dlr_value = locale.currency( bnb_o1t_value, grouping=True ).split('$')[1]
-        
-        bnb_o1t_value = (float(price_data['only-1-token']['usd']) / float(price_data['binancecoin']['usd']) * 0.010753)
-        bnb_o1t_dlr_value = locale.currency( bnb_o1t_value, grouping=True ).split('$')[1]
-        
-#        o1t_bnb_value = (float(price_data['binancecoin']['usd']) // float(price_data['only-1-token']['usd']) * 0.93)
-#        o1t_bnb_dlr_value = locale.currency( o1t_bnb_value, grouping=True ).split('$')[1]
+        markup = types.InlineKeyboardMarkup()
+        btn_a = types.InlineKeyboardButton('\U0001F95E PancakeSwap(V2)', callback_data='buy', url=LINKS['pcs'])
+        btn_b = types.InlineKeyboardButton('\U0001F4B5 JustMoney.Exchange', callback_data='buy', url=LINKS['justswap'])
+        markup.add(btn_a)
+        markup.add(btn_b)
 
-        o1t_bnb_value = (1 / (float(price_data['only-1-token']['usd']) / float(price_data['binancecoin']['usd'])))
-        o1t_bnb_dlr_value = "${:,.8f}".format( o1t_bnb_value, grouping=True ).split('$')[1]
-        
-        resp_msg = f'''Current price information\n\nName: *{NAME}*\nSymbol: *{SYMBOL}*\n\n{SYMBOL} Price: *{o1t_price} ({o1t_change}%) 24H*\nMarket Cap: *{marketcap}*\n24H Volume: *{o1t_vol}*\nHolders: *{holders.strip()}*\n\nLiquidity Total: *{liq_total}*\nLiquidity {SYMBOL} Qty: *{liq_tokens['O1T']}*\nLiquidity {SYMBOL} Value: *{o1t_liq_dlr_value}*\nLiquidity BNB Qty: *{liq_tokens['WBNB']}*\nLiquidity BNB Value: *{bnb_liq_dlr_value}*\nLP Holders: *{lp_holders.strip()}*\n\nBNB Price: *{bnb_price} ({bnb_change}%) 24H*\n\n1 BNB = *{o1t_bnb_dlr_value} {SYMBOL}*\n{bnb_o1t_dlr_value} BNB = 1% O1T Supply'''
-        return resp_msg
+        return markup
     except Exception as error:
         logger.error(f'Error occurred processing \'prices\' command: {error}')
         return ERROR_MESSAGES['default']
@@ -539,11 +513,13 @@ def lambda_handler(event, context):
 
         logger.info('[ INIT ] Validating environment variables')
         for var in ENV_VARS:
+            print(var)
             ENV_VARS[var] = os.environ.get(var)
-            if ENV_VARS[var] is None:
+            if ENV_VARS[var] == '':
                 raise NameError('Unable to retrieve one or more environment variables')
 
-        api_key =  os.environ['telegramApiKey']
+        api_key = ENV_VARS['telegramApiKey']
+        print(ENV_VARS)
         bot = telebot.TeleBot(api_key, parse_mode='MARKDOWN')
             
         if command == 'allcommands':
@@ -638,8 +614,15 @@ def lambda_handler(event, context):
             
         elif command == 'priceinfo':
             logger.info('[ COMMAND ] Processing /priceinfo request')
-            resp_msg = priceinfo()
-            bot.send_message(chat_id, resp_msg)
+            logger.info('Getting files from s3')
+            s3.meta.client.download_file('price-processor', 'only-1-token.png', '/tmp/only-1-token.png')
+            s3.meta.client.download_file('price-processor', 'only-1-token.txt', '/tmp/only-1-token.txt')
+            logger.info('Files downloaded')
+            resp_msg = ''
+            with open('/tmp/only-1-token.txt') as f:
+                resp_msg = f.read()
+            markup = priceinfo()
+            bot.send_photo(chat_id, open('/tmp/only-1-token.png', 'rb'), resp_msg, reply_markup=markup)
         
     except Exception as error:
         logger.error(f'[ FAIL ] Unhandled event: {error}')
