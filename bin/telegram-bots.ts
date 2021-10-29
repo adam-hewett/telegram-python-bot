@@ -3,6 +3,9 @@ import 'source-map-support/register';
 import * as cdk from '@aws-cdk/core';
 const app = new cdk.App();
 
+import { PriceProcessorStack } from '../shared/price-processor/price-processor-stack';
+new PriceProcessorStack(app, 'PriceProcessorStack', {});
+
 import { TestBotStack } from '../bots/test-bot/test-bot-stack';
 new TestBotStack(app, 'TestBotStack', {});
 
@@ -20,3 +23,6 @@ new InfiniteOneBotStack(app, 'InfiniteOneBotStack', {});
 
 import { SeaChainTokenBotStack } from '../bots/seachaintoken-bot/seachaintoken-bot-stack';
 new SeaChainTokenBotStack(app, 'SeaChainTokenBotStack', {});
+
+import { ProjectQuantumBotStack } from '../bots/projectquantum-bot/projectquantum-bot-stack';
+new ProjectQuantumBotStack(app, 'ProjectQuantumBotStack', {});
