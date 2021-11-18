@@ -3,11 +3,11 @@ import * as lambda from '@aws-cdk/aws-lambda';
 import * as apigateway from '@aws-cdk/aws-apigateway';
 import * as logs from '@aws-cdk/aws-logs';
 
-export class InfiniteOneBotStack extends cdk.Stack {
+export class CrowFinanceBotStack extends cdk.Stack {
     constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
         super(scope, id, props);
 
-        const botName = 'infiniteone-bot';
+        const botName = 'crowfinance-bot';
         const path = `bots/${botName}/lambda`;
         const layerPath = 'shared/lambda-layers';
 
