@@ -23,3 +23,9 @@ new SeaChainTokenBotStack(app, 'SeaChainTokenBotStack', {});
 
 import { CrowFinanceBotStack } from '../bots/crowfinance-bot/crowfinance-bot-stack';
 new CrowFinanceBotStack(app, 'CrowFinanceBotStack', {});
+
+import { RealSantaBotStack } from '../bots/realsanta-bot/realsanta-bot-stack';
+new RealSantaBotStack(app, 'RealSantaBotStack', {});
+
+import { ScrapStudiosBotStack } from '../bots/scrapstudios-bot/scrapstudios-bot-stack';
+new ScrapStudiosBotStack(app, 'ScrapStudiosBotStack', {});

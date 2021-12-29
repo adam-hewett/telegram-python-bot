@@ -44,9 +44,26 @@ export class PriceProcessorStack extends cdk.Stack {
 
         s3Bucket.grantReadWrite(lbd);
 
+        const crowPriceLbd = new lambda.Function(this, `${solutionName}-crow-price-lambda`, {
+            runtime: lambda.Runtime.PYTHON_3_8,
+            handler: `crow-${solutionName}.lambda_handler`,
+            code: lambda.Code.fromAsset(`${path}/crow-price-processor`),
+            environment: {
+                MPLCONFIGDIR: '/tmp',
+                BUCKET_NAME: s3Bucket.bucketName,
+            },
+            layers: [priceProcessorLibsLayer],
+            logRetention: logs.RetentionDays.ONE_WEEK,
+            timeout: cdk.Duration.seconds(60),
+            memorySize: 2048,
+        });
+
+        s3Bucket.grantReadWrite(crowPriceLbd);
+
         const rule = new events.Rule(this, 'schedule-rule', {
             schedule: events.Schedule.rate(cdk.Duration.minutes(1)),
         });
         rule.addTarget(new targets.LambdaFunction(lbd));
+        rule.addTarget(new targets.LambdaFunction(crowPriceLbd));
     }
 }
