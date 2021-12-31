@@ -36,6 +36,7 @@ ERROR_MESSAGES = {
 SUPPORTED_COMMANDS = [
     'allcommands',
     'price',
+    'price1h',
     'price4h',
     'price1d'
 ]
@@ -102,7 +103,7 @@ def lambda_handler(event, context):
         markup.add(btn_cro)
         markup.add(btn_usdc)
             
-        if command == 'price':
+        if command == 'price' or command == 'price1h':
             logger.info('[ COMMAND ] Processing /price request')
             logger.info('Getting file from s3')
             s3.meta.client.download_file('price-processor', 'crow-finance.png', '/tmp/crow-finance.png')
@@ -121,6 +122,7 @@ def lambda_handler(event, context):
             resp_msg = ''
             with open('/tmp/crow-finance.txt') as f:
                 resp_msg = f.read()
+                resp_msg = resp_msg.replace('Current price information with 1 hour chart', 'Current price information with 4 hour chart')
             bot.send_photo(chat_id, open('/tmp/crow-finance-4h.png', 'rb'), resp_msg, reply_markup=markup)
         elif command == 'price1d':
             logger.info('[ COMMAND ] Processing /price1d request')
@@ -131,6 +133,7 @@ def lambda_handler(event, context):
             resp_msg = ''
             with open('/tmp/crow-finance.txt') as f:
                 resp_msg = f.read()
+                resp_msg = resp_msg.replace('Current price information with 1 hour chart', 'Current price information with 1 day chart')
             bot.send_photo(chat_id, open('/tmp/crow-finance-1d.png', 'rb'), resp_msg, reply_markup=markup)
         
     except Exception as error:

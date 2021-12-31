@@ -15,6 +15,8 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 import pandas as pd
 
+from math import log, floor
+
 import locale
 locale.setlocale(locale.LC_ALL, 'en_US.UTF-8')
 
@@ -25,6 +27,12 @@ s3 = boto3.resource('s3')
 ENV_VARS = {
     'BUCKET_NAME': ''
 }
+
+def format_price(number):
+    units = ['', 'K', 'M', 'B', 'T']
+    k = 1000.0
+    magnitude = int(floor(log(number, k)))
+    return '%.2f%s' % (number / k**magnitude, units[magnitude])
 
 def create_graph_image(raw_data: dict) -> str:
     price_decimals = '%.4f'
@@ -139,7 +147,11 @@ def lambda_handler(event, context):
             else:
                 page_number += 1
 
-        price_info_text = f'''Current price information\n\nName: *Crow Token*\nSymbol: *CROW*\n\nTrading pairs\n\nCROW/CRO\nCROW Price (USD): *{crow_cro_price}*\n24H Transactions: *{crow_cro_24h_txns}*\n24H Volume (USD): *{crow_cro_24h_vol}*\n24H Price Change: *{crow_cro_24h_chng}%*\nLiquidity: *{crow_cro_24h_lqdty}*\n\nCROW/USDC\nCROW Price (USD): *{crow_usdc_price}*\n24H Transactions: *{crow_usdc_24h_txns}*\n24H Volume (USD): *{crow_usdc_24h_vol}*\n24H Price Change: *{crow_usdc_24h_chng}%*\nLiquidity: *{crow_usdc_24h_lqdty}*\n\nTotal Holders: *{crow_holders}*'''
+        total_supply_response = requests.get(f'{cronos_api_base_url}?module=stats&action=tokensupply&contractaddress={crow_token_address}')
+        total_supply = total_supply_response.json()['result']
+        market_cap = format_price(int(total_supply.split(total_supply[-18:])[0]) * float(crow_cro_price.split('$')[1]))
+
+        price_info_text = f'''Current price information with 1 hour chart\n\nName: *Crow Token*\nSymbol: *CROW*\n\nTrading pairs\n\nCROW/CRO\nCROW Price (USD): *{crow_cro_price}*\n24H Transactions: *{crow_cro_24h_txns}*\n24H Volume (USD): *{crow_cro_24h_vol}*\n24H Price Change: *{crow_cro_24h_chng}%*\nLiquidity: *{crow_cro_24h_lqdty}*\n\nCROW/USDC\nCROW Price (USD): *{crow_usdc_price}*\n24H Transactions: *{crow_usdc_24h_txns}*\n24H Volume (USD): *{crow_usdc_24h_vol}*\n24H Price Change: *{crow_usdc_24h_chng}%*\nLiquidity: *{crow_usdc_24h_lqdty}*\n\nMarket Cap: *{market_cap}*\nTotal Holders: *{crow_holders}*'''
 
         temp_file_path = f"/tmp/crow-finance.txt"
         with open(temp_file_path, 'w') as f:
