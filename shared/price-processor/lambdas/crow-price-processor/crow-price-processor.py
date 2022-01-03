@@ -52,17 +52,17 @@ def create_graph_image(raw_data: dict) -> str:
     df.index = pd.DatetimeIndex(df['date'])
 
     colours = {
-        'line': '#22c56e',
-        'up': '#01454B',
-        'down': '#9AC1C5',
-        'edge_up': '#01454B',
-        'edge_down': '#9AC1C5',
-        'wick_up': '#01454B',
-        'wick_down': '#9AC1C5',
-        'face': '#F1F6F7',
-        'edge': '#F1F6F7',
-        'fig': '#F1F6F7',
-        'grid': '#DAE2E2',
+        'line': '#004475',
+        'up': '#004475',
+        'down': '#92C8F0',
+        'edge_up': '#004475',
+        'edge_down': '#92C8F0',
+        'wick_up': '#004475',
+        'wick_down': '#92C8F0',
+        'face': '#E7F1F8',
+        'edge': '#E7F1F8',
+        'fig': '#E7F1F8',
+        'grid': '#97C0DE',
     }
 
     img_path = f"/tmp/output-crow-finance.png"
