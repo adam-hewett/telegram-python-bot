@@ -147,11 +147,31 @@ def lambda_handler(event, context):
             else:
                 page_number += 1
 
-        total_supply_response = requests.get(f'{cronos_api_base_url}?module=stats&action=tokensupply&contractaddress={crow_token_address}')
-        total_supply = total_supply_response.json()['result']
-        market_cap = format_price(int(total_supply.split(total_supply[-18:])[0]) * float(crow_cro_price.split('$')[1]))
+        token_supply_response = requests.get(f'{cronos_api_base_url}?module=stats&action=tokensupply&contractaddress={crow_token_address}')
+        token_supply = token_supply_response.json()['result']
+        circulating_supply = format_price(int(token_supply.split(token_supply[-18:])[0]))
+        market_cap = format_price(int(token_supply.split(token_supply[-18:])[0]) * float(crow_cro_price.split('$')[1]))
 
-        price_info_text = f'''Current price information with 1 hour chart\n\nName: *Crow Token*\nSymbol: *CROW*\n\nTrading pairs\n\nCROW/CRO\nCROW Price (USD): *{crow_cro_price}*\n24H Transactions: *{crow_cro_24h_txns}*\n24H Volume (USD): *{crow_cro_24h_vol}*\n24H Price Change: *{crow_cro_24h_chng}%*\nLiquidity: *{crow_cro_24h_lqdty}*\n\nCROW/USDC\nCROW Price (USD): *{crow_usdc_price}*\n24H Transactions: *{crow_usdc_24h_txns}*\n24H Volume (USD): *{crow_usdc_24h_vol}*\n24H Price Change: *{crow_usdc_24h_chng}%*\nLiquidity: *{crow_usdc_24h_lqdty}*\n\nMarket Cap: *{market_cap}*\nTotal Holders: *{crow_holders}*'''
+        now = datetime.utcnow()
+        now_timestamp = now.timestamp() * 1000
+        one_hour_ago = now - timedelta(hours=1)
+        one_hour_ago_timestamp = one_hour_ago.timestamp() * 1000
+
+        one_hour_chart_cro_response = requests.get(f'https://c7.dexscreen.com/u/chart/bars/cronos/{crow_cro_pair_address}?from={one_hour_ago_timestamp}&to={now_timestamp}&res=5&cb=12')
+        open_cro_price = float(one_hour_chart_cro_response.json()['bars'][0]['openUsd'])
+        close_cro_price = float(one_hour_chart_cro_response.json()['bars'][-1]['closeUsd'])
+        print(f'{open_cro_price} : {close_cro_price}')
+        one_hour_cro_pct_change = round(float(((close_cro_price - open_cro_price) * 100) / open_cro_price), 2)
+        print(one_hour_cro_pct_change)
+
+        one_hour_chart_usd_response = requests.get(f'https://c7.dexscreen.com/u/chart/bars/cronos/{crow_usd_pair_address}?from={one_hour_ago_timestamp}&to={now_timestamp}&res=5&cb=12')
+        open_usd_price = float(one_hour_chart_usd_response.json()['bars'][0]['openUsd'])
+        close_usd_price = float(one_hour_chart_usd_response.json()['bars'][-1]['closeUsd'])
+        print(f'{open_usd_price} : {close_usd_price}')
+        one_hour_usd_pct_change = round(float(((close_usd_price - open_usd_price) * 100) / open_usd_price), 2)
+        print(one_hour_usd_pct_change)
+
+        price_info_text = f'''Current price information with 1 hour chart\n\nName: *Crow Token*\nSymbol: *CROW*\nMarket Cap: *{market_cap}*\nTotal Supply: *1B*\nCirculating Supply: *{circulating_supply}*\nTotal Holders: *{crow_holders}*\n\nTrading pairs\n\n*CROW/CRO*\nCROW Price (USD): *{crow_cro_price}*\n24H Transactions: *{crow_cro_24h_txns}*\n24H Volume (USD): *{crow_cro_24h_vol}*\n24H Price Change: *{crow_cro_24h_chng}%*\n1H Price Change: *{one_hour_cro_pct_change}%*\nLiquidity: *{crow_cro_24h_lqdty}*\n\n*CROW/USDC*\nCROW Price (USD): *{crow_usdc_price}*\n24H Transactions: *{crow_usdc_24h_txns}*\n24H Volume (USD): *{crow_usdc_24h_vol}*\n24H Price Change: *{crow_usdc_24h_chng}%*\n1H Price Change: *{one_hour_usd_pct_change}%*\nLiquidity: *{crow_usdc_24h_lqdty}*'''
 
         temp_file_path = f"/tmp/crow-finance.txt"
         with open(temp_file_path, 'w') as f:
@@ -159,8 +179,6 @@ def lambda_handler(event, context):
         s3.meta.client.upload_file(temp_file_path, bucket_name, "crow-finance.txt")
         logger.info(f"[ PRICE DATA ] Fetching price data for token crow-finance complete")
 
-        now = datetime.utcnow()
-        now_timestamp = now.timestamp() * 1000
         yesterday = now - timedelta(days=1)
         yesterday_timestamp = yesterday.timestamp() * 1000
 
@@ -177,10 +195,10 @@ def lambda_handler(event, context):
         s3.meta.client.upload_file(fourh_ohlc_file, bucket_name, "crow-finance-4h.png")
         logger.info(f"[ RENDER ] Render for token Crow Finance 4H complete")
 
-        one_month_days_ago = now - timedelta(weeks=4)
-        one_month_ago_timestamp = one_month_days_ago.timestamp() * 1000
+        four_weeks_ago = now - timedelta(weeks=4)
+        four_weeks_ago_timestamp = four_weeks_ago.timestamp() * 1000
 
-        oned_chart_response = requests.get(f'https://c7.dexscreen.com/u/chart/bars/cronos/{crow_cro_pair_address}?from={one_month_ago_timestamp}&to={now_timestamp}&res=1440&cb=30')
+        oned_chart_response = requests.get(f'https://c7.dexscreen.com/u/chart/bars/cronos/{crow_cro_pair_address}?from={four_weeks_ago_timestamp}&to={now_timestamp}&res=1440&cb=30')
         oned_ohlc_file = create_graph_image(oned_chart_response.json()['bars'])
         s3.meta.client.upload_file(oned_ohlc_file, bucket_name, "crow-finance-1d.png")
         logger.info(f"[ RENDER ] Render for token Crow Finance 1D complete")
