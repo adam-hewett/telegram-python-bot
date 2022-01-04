@@ -17,7 +17,7 @@ export class PriceProcessorStack extends cdk.Stack {
         const s3Bucket = new s3.Bucket(this, 'price-bucket', {
             autoDeleteObjects: true,
             blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
-            bucketName: 'price-processor',
+            bucketName: `price-processor-${cdk.Stack.of(this).region}`,
             encryption: s3.BucketEncryption.S3_MANAGED,
             removalPolicy: cdk.RemovalPolicy.DESTROY,
         });
